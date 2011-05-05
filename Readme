@@ -1,0 +1,35 @@
+
+   VIA  -- Volumetric Image Analysis
+   
+
+VIA is an image processing package.
+It contains about 70 library functions and 50
+application programs.
+
+The data format, file-handling routines,
+as well as some image processing routines
+are taken from the public-domain-package "Vista"
+(www.cs.ubc.ca/labs/lci/vista/vista/html).
+
+To compile VIA do the following:
+(These are instructions to do an out-of-source build
+with the cmake tool. For further information consult the
+cmake introductionary pages on 
+www.cmake.org/cmake/help/runningcmake.html)
+
+1. create a directory 'build' with 'mkdir build'
+
+2. chdir to the new directory with 'cd build'
+
+3. type cmake ../
+
+4. type 'make'
+
+5. type 'make install'
+
+6. optionally, type 'make clean'
+
+
+
+
+G.Lohmann, MPI-CBS, April 2009.

@@ -1,0 +1,25 @@
+/*! \file
+
+Delete one hemisphere.
+
+
+This program accepts both raster images and graph data types.
+
+
+
+<p>
+<pre>
+	Input file. Default: (none)
+<b>-out</b> <string>
+	Output file. Default: (none)
+<b>-hemi</b> left | right
+	Hemisphere to retain. Default: left
+<b>-reflect</b> [ true | false ]
+	Whether to reflect one hemisphere (graph only). Default: false
+</pre>
+<p>
+
+
+\par Author:
+Gabriele Lohmann, MPI-CBS
+*/

@@ -1,0 +1,8 @@
+PROJECT(vskel3d)
+
+ADD_EXECUTABLE(vskel3d vskel3d.c)
+TARGET_LINK_LIBRARIES(vskel3d via)
+
+INSTALL(TARGETS vskel3d
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

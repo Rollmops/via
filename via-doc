@@ -1,0 +1,28 @@
+#!/bin/sh
+
+LHELP="/usr/share/doc/via/html/index.html"
+DNULL="/dev/null"
+
+if [ ! -f $LHELP ]; then
+  echo "The documentation is not available, please install the via \
+documentation package."
+  exit 1
+fi
+
+if [ $BROWSER ]; then
+  $BROWSER $LHELP >$DNULL 2>&1
+else
+  sensible-browser $LHELP 2>&1 > $DNULL
+  if [ $? -gt 0 ];then
+    BROWSER=`which konqueror 2> $DNULL`
+    BROWSER2=`which firefox 2> $DNULL`
+    if  [ $BROWSER ]; then
+      $BROWSER $LHELP >$DNULL 2>&1
+    elif  [ $BROWSER2 ]; then
+      $BROWSER2 $LHELP >$DNULL 2>&1
+    else
+      echo Specify default browser using the environment variable BROWSER
+    fi
+  fi
+fi
+

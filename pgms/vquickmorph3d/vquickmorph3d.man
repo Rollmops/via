@@ -1,0 +1,73 @@
+.ds Vi Vista
+.ds Vn 2.0
+.TH vquickmorph3d 1Vi "15 Februar 1994" "\*(Vi Version \*(Vn"
+.SH NAME
+vquickmorph3d \- apply a quick 3D morphological filter to a binary image
+.SH SYNOPSIS
+\fBvquickmorph3d\fR [\fB-\fIoption\fR ...] \
+[\fIinfile\fR] [\fIoutfile\fR]
+.SH DESCRIPTION
+\fBvquickmorph3d\fP
+applies a 3D morphological filter to an image by thresholding a distance transform.
+Each input image is filtered to 
+produce a corresponding output image.
+.LP
+This program emulates a "true" morphological filter by thresholding
+a 3D distance transform. It can only emulate filtering by a sphere
+shaped structuring element. It is much faster than the original
+morphological filtering. It produces slightly different results.
+.LP
+The input images must be binary images of type VBit. The output images
+will also be binary. 
+.SH COMMAND LINE OPTIONS
+\fBvquickmorph3d\fP accepts the following options:
+.IP \fB-help\fP 15n
+Prints a message describing options.
+.IP "\fB-in\fP \fIinfile\fP"
+Specifies the Vista data file containing the input images.
+.IP "\fB-out\fP \fIoutfile\fP"
+Specifies where to write the output images as a Vista data file.
+.IP "\fB-radius\fP \fIdiameter\fP"
+Specifies the radius of a sphere shaped structuring element.
+Default: 6.
+.IP "\fB-op\fP \fIop\fP"
+Specifies the operation as one of the following:
+.RS 17n
+.PP
+.nf
+.ta 8n
+\fBdilate\fP    dilation
+\fBerode\fP     ersion
+\fBopen\fP      opening (erosion followed by dilation)
+\fBclose\fP     closing (dilation followed by erosion)
+.DT
+.fi
+.RE
+.LP
+Input and output files can be specified on the command line or allowed to
+default to the standard input and output streams.
+
+.SH LITERATURE
+For an excellent tutorial on image morphology, see                            
+Haralick, R.M, S.R. Sternberg, and X. Zhuang, "Image analysis using     
+mathematical morphology," 
+.I IEEE Trans. PAMI, 
+vol. PAMI\-9, No. 4, July 1987,   
+pp. 532-550.                                                            
+Or see                                                                   
+Maragos, P. and R. Shaffer,                                             
+"Morphological systems for multidimensional Signal Processing",         
+.I Proc. IEEE, 
+vol. 78, no. 4, April 1990.
+
+
+.SH "SEE ALSO"
+.na
+.nh
+.BR vbinmorph3d (1Vi),
+.BR VImage (3Vi),
+.BR Vista (7Vi)
+.hy
+.ad
+.SH AUTHOR
+Gabriele Lohmann <lohmann@cns.mpg.de>

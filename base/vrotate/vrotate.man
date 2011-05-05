@@ -1,0 +1,46 @@
+.ds Vn 1.12
+.TH vrotate 1Vi "24 April 1993" "Vista Version \*(Vn"
+.SH NAME
+vrotate \- rotate an image
+.SH SYNOPSIS
+\fBvrotate\fR [\fB-angle \fIangle\fR] [\fB- \fIoption\fR ...] \
+[\fIinfile\fR] [\fIoutfile\fR]
+.SH DESCRIPTION
+\fBvrotate\fP rotates each input image by the specified angle, producing a 
+file of output images. The rotation is done by first rotating the image by 
+a multiple of 90 degrees (using flips and transpositions) to an angle 
+nearest to the specified angle, and then by completing the rotation using 
+Alan Paeth's three-shear method. 
+.PP 
+Because each pixel in the rotated image is a weighted average of the 
+corresponding pixels in the original image, the set of colors (or gray 
+shades) used by the original image will not be preserved in the rotated 
+image. 
+.PP
+In general, the edges of the rotated image will not be parallel to the 
+vertical and horizontal axes. In such cases, the output image will be the 
+smallest rectangular region containing the whole rotated image. Portions of 
+the output image not covered by the rotated image will be filled with 
+zeros. 
+.SH "COMMAND LINE OPTIONS"
+\fBvrotate\fP accepts the following options in any order:
+.IP \fB-help\fP 15n
+Prints a message describing options.
+.IP "\fB-in\fP \fIinfile\fP"
+Specifies a Vista data file containing the input images.
+.IP "\fB-out\fP \fIoutfile\fP"
+Specifies where to write the output images as a Vista data file.
+.IP "\fB-angle\fP \fIangle\fP"
+Specifies the angle of rotation in degrees. Positive values rotate 
+counterclockwise; negative ones rotate clockwise. Default: 90.
+.PP
+Input and output files can be specified on the command line or allowed to
+default to the standard input and output streams.
+.SH "SEE ALSO"
+.BR VImage (3Vi),
+.BR Vista (7Vi)
+.br
+``A Fast Algorithm for General Raster Rotation'' by Alan Paeth,
+\fIGraphics Interface '86\fP, pp. 77-81.
+.SH AUTHOR
+Daniel Ko <ko@cs.ubc.ca>

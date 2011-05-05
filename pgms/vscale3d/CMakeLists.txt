@@ -1,0 +1,8 @@
+PROJECT(vscale3d)
+
+ADD_EXECUTABLE(vscale3d vscale3d.c)
+TARGET_LINK_LIBRARIES(vscale3d via)
+
+INSTALL(TARGETS vscale3d
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

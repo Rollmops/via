@@ -1,0 +1,8 @@
+PROJECT(PNMTOV)
+
+ADD_EXECUTABLE(pnmtov pnmtov.c)
+TARGET_LINK_LIBRARIES(pnmtov via)
+
+INSTALL(TARGETS pnmtov
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

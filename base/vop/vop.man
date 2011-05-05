@@ -1,0 +1,127 @@
+.ds Vn 1.12
+.TH vop 1 "24 April 1993" "Vista Version \*(Vn"
+.SH NAME
+vop \- perform arithmetic or logical pixel operation
+.SH SYNOPSIS
+\fBvop -op \fIop\fP [\fB-\fIoption\fR ...] [\fIinfile\fR] [\fIoutfile\fR]
+.SH DESCRIPTION
+\fBvop\fP performs arithmetic and logical operations on image pixels.
+It has three modes:
+.RS 2n
+.IP 1. 3n
+It can perform a unary (single-operand) operation on each pixel of an
+input image.
+.IP 2.
+It can perform a binary (two-operand) operation between each pixel of an
+input image and a scalar value.
+.IP 3.
+It can perform a binary (two-operand) operation between each pixel of an
+input image and the corresponding pixel of a second image.
+.RE
+The mode, operation, and operands are specified by command line options.
+Input images come from a data file; the specified operation is performed on
+each to produce an output image of the same properties.
+.PP
+When the operation is a binary one between two images (case 3, above),
+the second input comes from a separate file, and it may have...
+.RS 2n
+.PP
+\&...the same number of bands as the first input image, in which case band
+\fIi\fP of the output image is formed from band \fIi\fP of both input
+image; or
+.PP
+...a single band, in which case band \fIi\fP of the output image is
+\&formed from band \fIi\fP of the first input image and band 0 of the second.
+.RE
+.PP
+By means of the \fB-min\fP and \fB-max\fP options, you can specify bounds
+for clipping output pixel values.
+.SH "COMMAND LINE OPTIONS"
+\fBvop\fP accepts the following options:
+.IP \fB-help\fP 15n
+Prints a message describing options.
+.IP "\fB-in\fP \fIinfile\fP"
+Specifies a Vista data file containing the input images. These images
+serve as the first operand of a binary operation, or the only operand of
+a unary one.
+.IP "\fB-out\fP \fIoutfile\fP"
+Specifies where to write the output images as a Vista data file.
+.IP "\fB-op\fP \fIop\fP"
+Specifies the operation as one of the following, described here in terms of
+operands \fIu\fP and \fIv\fP:
+.RS 17n
+.PP
+.nf
+.ta 8n
+\fBabs\fP	absolute value of \fIu\fP
+\fBexp\fP	exponential function \fIe\fP\ **\ \fIu\fP
+\fBlog\fP	natural logarithm \fIlog\fP\ (\fIu\fP)
+\fBnot\fP	negation !\ \fIu\fP
+\fBsqrt\fP	square root of \fIu\fP
+\fBsquare\fP	\fIu\fP\ *\ \fIu\fP
+\fBadd\fP	\fIu\fP\ +\ \fIv\fP
+\fBand\fP	\fIu\fP\ &\ \fIv\fP
+\fBdist\fP	absolute value of (\ \fIu\fP\ \-\ \fIv\fP\ )
+\fBdiv\fP	\fIu\fP\ /\ \fIv\fP
+\fBmax\fP	\fImax\fP\ (\fIu\fP,\ \fIv\fP)
+\fBmin\fP	\fImin\fP\ (\fIu\fP,\ \fIv\fP)
+\fBmult\fP	\fIu\fP\ *\ \fIv\fP
+\fBor\fP	\fIu\fP\ |\ \fIv\fP
+\fBsub\fP	\fIu\fP\ \-\ \fIv\fP
+\fBxor\fP	\fIu\fP\ ^\ \fIv\fP
+.DT
+.fi
+.RE
+.IP "\fB-value\fP \fInumber\fP"
+Specifies a scalar constant to be used as the second operand of a binary
+operation.
+.IP "\fB-image\fP \fIimagefile\fP"
+Specifies a Vista data file containing a single image to serve as the
+second operand of a binary operation.
+.IP "\fB-min\fP \fInumber\fP"
+Sets a lower bound for clipping output pixel values. Default: the
+minimum value that can be represented by an output pixel.
+.IP "\fB-max\fP \fInumber\fP"
+Sets an upper bound for clipping output pixel values. Default: the
+maximum value that can be represented by an output pixel.
+.PP
+When \fB-op\fP specifies a binary operation, either \fB-image\fP or
+\fB-value\fP must be specified.
+.PP
+Input and output files can be specified on the command line or allowed to
+default to the standard input and output streams.
+.SH "SEE ALSO"
+.na
+.nh
+.BR vadjust (1Vi),
+.BR vconvert (1Vi),
+.BR vinvert (1Vi),
+.BR vnegate (1Vi),
+.br
+.BR VImage (3Vi),
+.BR Vista (7Vi)
+.ad
+.hy
+.SH NOTES
+The \fBand\fP, \fBor\fP, and \fBxor\fP operations can only be performed
+with images having integer pixel representations (not \fBfloat\fP or
+\fBdouble\fP).
+.PP
+A floating point result (such as what \fBexp\fP produces) is rounded to the
+nearest integer for storing in an integer output pixel.
+.PP
+Clipping of output pixel values and arithmetic exceptions are reported by
+means of warning messages.
+.SH BUGS
+If \fBvop\fP is built under Solaris 2.x using the unbundled Sun C compiler,
+an integer division by zero is flagged as a fatal error. This is done
+because of a SunOS bug that causes those exceptions to repeat indefinitely
+(see BUGS on the SunOS 5.2 \fBieee_handler\fP(3M) man page).
+.PP
+If \fBvop\fP is built under Solaris 2.x using a compiler other than the
+unbundled Sun C compiler, there is no reporting of arithmetic exceptions.
+.SH AUTHORS
+.na
+.nh
+Ralph\ Horstmann\ <horstman@cs.ubc.ca>,
+Art\ Pope\ <pope@cs.ubc.ca>

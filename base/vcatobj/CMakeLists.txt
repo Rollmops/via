@@ -1,0 +1,8 @@
+PROJECT(VCATOBJ)
+
+ADD_EXECUTABLE(vcatobj vcatobj.c)
+TARGET_LINK_LIBRARIES(vcatobj via)
+
+INSTALL(TARGETS vcatobj
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

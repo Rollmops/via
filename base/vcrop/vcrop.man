@@ -1,0 +1,45 @@
+.ds Vn 1.12
+.TH vcrop 1Vi "24 April 1993" "Vista Version \*(Vn"
+.SH NAME
+vcrop \- crop an image
+.SH SYNOPSIS
+\fBvcrop\fR [\fB-\fIoption\fR ...] [\fIinfile\fR] [\fIoutfile\fR]
+.SH DESCRIPTION
+\fBvcrop\fP crops a file of images using a cropping rectangle specified by 
+command line options. 
+.SH "COMMAND LINE OPTIONS"
+\fBvcrop\fP accepts the following options:
+.IP \fB-help\fP 15n
+Prints a message describing options.
+.IP "\fB-in\fP \fIinfile\fP"
+Specifies a Vista data file containing the input images.
+.IP "\fB-out\fP \fIoutfile\fP"
+Specifies where to write the cropped images as a Vista data file.
+.IP "\fB-top\fP \fIrow\fP"
+Specifies the first (top) row of the cropping rectangle.
+.IP "\fB-bottom\fP \fIrow\fP"
+Specifies the last (bottom) row of the cropping rectangle.
+.IP "\fB-left\fP \fIcol\fP"
+Specifies the first (leftmost) column of the cropping rectangle.
+.IP "\fB-right\fP \fIcol\fP"
+Specifies the last (rightmost) column of the cropping rectangle.
+.IP "\fB-height\fP \fInrows\fP"
+Specifies the height of the cropping rectangle.
+.IP "\fB-width\fP \fIncols\fP"
+Specifies the width of the cropping rectangle.
+.PP
+The cropping rectangle must be unambiguously specified by using any two of
+\fB-top\fP, \fB-bottom\fP, and \fB-height\fP, plus any two of \fB-left\fP,
+\fB-right\fP, and \fB-width\fP.
+.PP
+The cropping rectangle may fall partially or completely outside an image it
+is cropping; in that case, the area outside is filled with zeros.
+.PP
+Input and output files can be specified on the command line or allowed to
+default to the standard input and output streams.
+.SH "SEE ALSO"
+.BR vxcrop (1Vi),
+.BR VImage (3Vi),
+.BR Vista (7Vi)
+.SH AUTHOR
+Ralph Horstmann <horstman@cs.ubc.ca>

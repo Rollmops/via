@@ -1,0 +1,39 @@
+.ds Vn 1.12
+.TH vistat 1Vi "24 April 1993" "Vista Version \*(Vn"
+.SH NAME
+vistat \- report image statistics
+.SH SYNOPSIS
+\fBvistat\fR [\fB-\fIoption\fR ...] [\fIinfile\fP ...] [\fIoutfile\fP]
+.SH DESCRIPTION
+\fBvistat\fP reports the minimum, maximum, mean, and standard deviation of
+the pixel values in its input images.
+.PP
+The measurements are reported in the form of a Vista data file containing
+one \fBstatistics\fP attribute per image measured. Each \fBstatistics\fP
+attribute, in turn, contains \fBmin\fP, \fBmax\fP, \fBmean\fP, and 
+\fBstd_dev\fP attributes reporting individual measurements. It also
+contains a \fBname\fP attribute if the corresponding image has one.
+Because these attribute have no binary data associated with them the
+program's output can be viewed directly at a terminal.
+.SH "COMMAND LINE OPTIONS"
+\fBvistat\fP accepts the following options:
+.IP \fB-help\fP 15n
+Prints a message describing options.
+.IP "\fB-in\fP \fIinfile\fP"
+Specifies a Vista data file containing the input images.
+.IP "\fB-out\fP \fIoutfile\fP"
+Specifies where to write the output statistics as a Vista data file.
+.PP
+Input and output files can be specified on the command line or allowed to
+default to the standard input and output streams.
+.SH "SEE ALSO"
+.na
+.nh
+.BR VImageStats (3Vi),
+.BR VImage (3Vi),
+.BR Vfile (5Vi),
+.BR Vista (7Vi)
+.hy
+.ad
+.SH AUTHOR
+Art Pope <pope@cs.ubc.ca>

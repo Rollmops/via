@@ -1,0 +1,8 @@
+PROJECT(VROTATE)
+
+ADD_EXECUTABLE(vrotate vrotate.c Rotate.c)
+TARGET_LINK_LIBRARIES(vrotate via)
+
+INSTALL(TARGETS vrotate
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

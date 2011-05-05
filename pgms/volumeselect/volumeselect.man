@@ -1,0 +1,61 @@
+.ds Vi Vista
+.ds Vn 2.0
+.TH volumesel 1Vi "15 Februar 1994" "\*(Vi Version \*(Vn"
+.SH NAME
+volumesel \- select volumes from a volume set
+.SH SYNOPSIS
+\fBvolumesel\fR \ <options>
+[\fIinfile\fR] [\fIoutfile\fR]
+.SH DESCRIPTION
+\fBvolumesel\fP selects volumes from a set of volumes according
+to some given selection criterion. Possible criteria are:
+size, circularity and compactness.
+
+"Size" refers to be number of voxels belonging to the volume.
+
+"Circularity" is a measure of roundness defined as:
+
+  (3.0 * size) / (4.0 * pi * rmax)
+
+where "rmax" is the radius of the smallest enclosing sphere.
+Thus if the volume is a sphere, this value will be "1",
+The further the volume's shape deviates from spherical
+shape, the smaller this value will become.
+
+
+"Compactness" is defined as the ratio between the number of border voxels
+and volume size. Thus, if most voxels belonging to the volume are
+interior voxels this value will be close to "1".
+
+The input image must be of type "volumes". The output image
+will be also be of type "volumes".
+
+.SH COMMAND LINE OPTIONS
+\fBvolumesel\fP accepts the following options:
+.IP \fB-help\fP 15n
+Prints a message describing options.
+.IP "\fB-in\fP \fIinfile\fP"
+Specifies the Vista data file containing the first input image.
+.IP "\fB-image\fP \fIinfile\fP"
+Specifies the Vista data file containing the second input image.
+.IP "\fB-out\fP \fIoutfile\fP"
+Specifies where to write the output images as a Vista data file.
+.IP "\fB-feature\fP \fIoutfile\fP"
+Specifies the selection criterion. Possible choices are:
+size | circularity | compactness. Default: size.
+.IP "\fB-min\fP \fImin\fP"
+Specifies the lower bound for the feature value.
+.IP "\fB-max\fP \fImax\fP"
+Specifies the upper bound for the feature value.
+.LP
+Input and output files can be specified on the command line or allowed to
+default to the standard input and output streams.
+.SH "SEE ALSO"
+.na
+.nh
+.BR VImage (3Vi),
+.BR Vista (7Vi)
+.hy
+.ad
+.SH AUTHOR
+Gabriele Lohmann <lohmann@cns.mpg.de>

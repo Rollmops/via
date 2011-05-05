@@ -1,0 +1,57 @@
+.ds Vn 1.12
+.TH vselect 1Vi "24 April 1993" "Vista Version \*(Vn"
+.SH NAME
+vselect \- select objects from a Vista data file
+.SH SYNOPSIS
+\fBvselect\fR [\fB-\fIoption\fR ...] [\fIinfile\fR] [\fIoutfile\fR]
+.SH DESCRIPTION
+\fBvselect\fP copies selected objects from an input file to an output file.
+.PP
+Command line options specify which objects are to be copied. Objects may be
+selected by type (e.g., all images), by name, by the value of some 
+attribute, or by position within the input file.
+.SH "COMMAND LINE OPTIONS"
+\fBvselect\fP accepts the following options:
+.IP \fB-help\fP 15n
+Prints a message describing options.
+.IP \fB-in\fP
+Specifies a Vista data file from which objects are to be selected.
+.IP \fB-out\fP
+Specifies where to write the selected objects as a Vista data file.
+.PP
+The input and output files can be specified on the command line or allowed to
+default to the standard input and output streams.
+.PP
+In addition, exactly one of the following options must be used to specify 
+the objects to be selected: 
+.IP "\fB-object\fP \fIi\fP" 15n
+Select the \fIi\fPth object. Objects in the input file are
+numbered consecutively from 0.
+.IP "\fB-name\fP \fIname\fP"
+Select any object whose attribute name is \fIname\fP.
+.IP "\fB-type\fP \fItype\fP"
+Select any object whose type is \fItype\fP.
+.IP "\fB-attr \fIname value\fP"
+Select any object having an attribute with the specified name and value.
+.PP
+Finally, any of these selection criteria can be inverted:
+.IP \fB-not\fP 15n
+Reverses the sense of the selection criterion.
+.SH EXAMPLES
+To select the first object from a file:
+.IP
+.B "vselect -object 0 < infile > outfile"
+.PP
+To select the attribute named ``cantaloupe'' from a file:
+.IP
+.B "vselect -name cantaloupe < infile > outfile"
+.PP
+To select everything but images from a file:
+.IP 
+.B "vselect -type image -not < infile > outfile"
+.PP
+To select images with \fBubyte\fP pixels from a file of images:
+.IP
+.B "vselect -attr nbands ubyte < infile > outfile"
+.SH AUTHOR
+Art Pope <pope@cs.ubc.ca>

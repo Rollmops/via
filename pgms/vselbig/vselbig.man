@@ -1,0 +1,50 @@
+.ds Vi Vista
+.ds Vn 2.1
+.TH vselbig 1Vi "15 Februar 1994" "\*(Vi Version \*(Vn"
+.SH NAME
+vselbig \- select largest labelled component
+.SH SYNOPSIS
+\fBvselbig\fR [\fIinfile\fR] [\fIoutfile\fR]
+.SH DESCRIPTION
+\fBvselbig\fP
+selects the largest labelled component of a labelled image.
+.LP
+The input image must be a labelled image of type "ubyte" or of type "short".
+Typically, it has  been created by some labelling algorithm, such as
+"vlabel2d", "vlabel3d", or some segmentation routine, e.g. "visodata".
+\fBvselbig\fP then creates a binary output image in which pixels
+belonging to the largest component (i.e. the most frequent label value)
+have value "1" and all other pixels have value "0".
+
+.SH TYPICAL PROCESSING CHAIN
+The following is a typical processing chain:
+.LP
+visodata -in image.v | vbinarize -min 2 -max 2 | vlabel3d | vselbig -out result.v 
+.LP
+This chain will segment the input image (visodata). It will then
+extract the class labelled "2" (vbinarize) 
+and perform a connected component analysis
+of this class (vlabel3d). Finally, the largest connected component 
+of class "2" is selected using vselbig.
+
+.SH COMMAND LINE OPTIONS
+\fBvselbig\fP accepts the following options:
+.IP \fB-help\fP 15n
+Prints a message describing options.
+.IP "\fB-in\fP \fIinfile\fP"
+Specifies the Vista data file containing the input images.
+.IP "\fB-out\fP \fIoutfile\fP"
+Specifies where to write the output images as a Vista data file.
+.LP
+Input and output files can be specified on the command line or allowed to
+default to the standard input and output streams.
+.SH "SEE ALSO"
+.na
+.nh
+.BR vlabel2d (1Vi),vlabel3d (1Vi)
+.BR VImage (3Vi),
+.BR Vista (7Vi)
+.hy
+.ad
+.SH AUTHOR
+Gabriele Lohmann <lohmann@cns.mpg.de>

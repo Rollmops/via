@@ -1,0 +1,52 @@
+.ds Vi Vista
+.ds Vn 1.2
+.TH vgenus3d 1Vi "July 3, 1995" "\*(Vi Version \*(Vn"
+.SH NAME
+vgenus3d \- compute the genus of a 3D binary image
+.SH SYNOPSIS
+\fBvgenus3d \fB [-\fIoption\fP ...] [\fIinfile\fP] [\fIoutfile\fP]
+
+.SH DESCRIPTION
+\fBvgenus3d\fP computes the Euler number (genus) of a 3D binary \fIsource\fP image.
+It prints the result on stderr.
+It produces no output file. The source image
+must be of type "VBit".
+The input image must contain more than two bands.
+Lee's algorithm only works if no black voxel (a "set" voxel) touches
+the image border. 
+
+.LP
+
+Literature:
+
+.LP
+D.G. Morgenthaler: "Three-dimensional topology: the genus",
+Computer Science Center, Univ. of Maryland, College Park,
+Tech. Report TR-980, 1980.
+
+.LP
+
+C.N. Lee, A. Rosenfeld: "Computing the Euler number of a 3d image",
+ICCV 1987, London, pp.567-571
+
+.LP
+
+The Input file can be specified on the command line or
+allowed to default to stdin.
+
+.SH "COMMAND LINE OPTIONS"
+\fBvgenus3d\fP accepts the following options in any order:
+.IP \fB-help\fP 1.5i
+Causes \fBvgenus3d\fP to print out a message describing its options.
+.IP "\fB-in\fP \fIinfile\fP"
+Specifies the Vista data file containing the input images.
+.IP "\fB-n\fP \fIn\fP"
+Specifies the type of neighbourhood system (6 or 26).
+Default: 26.
+
+.SH "SEE ALSO"
+.BR Vista (7Vi)
+.SH AUTHOR
+Gabriele Lohmann, MPI-CBS
+
+

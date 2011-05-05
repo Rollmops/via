@@ -1,0 +1,61 @@
+Format-Specification: http://wiki.debian.org/Proposals/CopyrightFormat
+Upstream-Name: via
+Upstream-Maintainer: LIPSIA developers <lipsia@cns.mpg.de>
+Upstream-Source: http://www.cbs.mpg.de/institute/software/lipsia
+
+
+Files: *
+Copyright: 1996-2009 Gabriele Lohmann <lohmann@cns.mpg.de>
+License: GPL-2+
+ On Debian systems the full text of the GNU General Public License can be found
+ in the `/usr/share/common-licenses/GPL' file.
+
+
+Files: vialib/ContrastShortUByte.c
+Copyright: 2002 Thomas Arnold <lipsia@cns.mpg.de>
+License: GPL-2+
+ On Debian systems the full text of the GNU General Public License can be found
+ in the `/usr/share/common-licenses/GPL' file.
+
+
+Files: vxlib/*, include/viao/*,
+  base/vnview/(vxview.h,attr.c,file.c,help.c,edge.c,Adjust.c,main.c,pref.c,view.c),
+  base/vxview/(vxview.h,attr.c,file.c,help.c,edge.c,Adjust.c,main.c,pref.c,view.c),
+  base/(vtopnm,vtopgm,plaintov,vrotate,vsynth,vselect,vcatbands,vinvert)/*.c,
+  base/(vcat,vconvert,vflip,vcrop,pnmtov,vop)/*.c,
+  vialib/Rotate2d.c,
+  viaio/(Alloc,Attr,BlockFileIO_*,Conv*,Crop,Dictionary,Edges*,Error,FileIO,).c,
+  viaio/(Fill,Flip,GraphType,Image*,Invert,List,Op,Option).c,
+  viaio/(PackData,Param,ReadPlain,ReadPnm,Stats,Transpose,Type).c
+Copyright: 1993, 1994 University of British Columbia (UBC), from authors
+  Dan Razzell, Art Pope, Daniel Ko, Ralph Horstmann
+License: Other
+  Permission to use, copy, modify, distribute, and sell this software and its
+  documentation for any purpose is hereby granted without fee, provided that
+  the above copyright notice appears in all copies and that both that
+  copyright notice and this permission notice appear in supporting
+  documentation. UBC makes no representations about the suitability of this
+  software for any purpose. It is provided "as is" without express or
+  implied warranty.
+
+
+File: base/vnview/FsbGQS.*, base/vxview/FsbGQS.*
+Copyright: 1991 OPEN SOFTWARE FOUNDATION, INC.
+License: Other
+  Permission is hereby granted to use, copy, modify and freely distribute
+  the software in this file and its documentation for any purpose without
+  fee, provided that the above copyright notice appears in all copies and
+  that both the copyright notice and this permission notice appear in
+  supporting documentation.  Further, provided that the name of Open
+  Software Foundation, Inc. ("OSF") not be used in advertising or
+  publicity pertaining to distribution of the software without prior
+  written permission from OSF.  OSF makes no representations about the
+  suitability of this software for any purpose.  It is provided "as is"
+  without express or implied warranty.
+
+
+Files: debian/*
+Copyright: Copyright 2009, Michael Hanke <michael.hanke@gmail.com>
+License: GPL-2+
+ On Debian systems the full text of the GNU General Public License can be found
+ in the `/usr/share/common-licenses/GPL' file.

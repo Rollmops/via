@@ -1,0 +1,8 @@
+PROJECT(vhemi)
+
+ADD_EXECUTABLE(vhemi vhemi.c)
+TARGET_LINK_LIBRARIES(vhemi via)
+
+INSTALL(TARGETS vhemi
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

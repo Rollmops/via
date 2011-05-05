@@ -1,0 +1,137 @@
+.ds Vn 1.12
+.TH vconvert 1Vi "24 April 1993" "Vista Version \*(Vn"
+.SH NAME
+vconvert \- convert an image's pixel representation
+.SH SYNOPSIS
+\fBvconvert\fR [\fB-repn \fIrepn\fR] [\fB-\fIoption\fR ...] \
+[\fIinfile\fR] [\fIoutfile\fR]
+.SH DESCRIPTION
+\fBvconvert\fP converts Vista images to a specified pixel representation.
+The images are read from an input file, converted to the representation
+specified by the -\fBrepn\fP command-line option, then written to an output
+file.
+.PP
+\fBvconvert\fP knows several ways of mapping input pixels to output pixels.
+You can choose the mapping you want by means of a \fB-map\fP command line
+option.  If you don't specify that option, however, then you'll get a
+default mapping that is usually appropriate. The default mapping is one
+that retains an image's appearance as accurately as possible \(em i.e., a
+particular shade of gray in the input image will be mapped to nearly the
+same shade in the output image. Alternatively, you can use \fB-map\fP to
+specify some other mapping that may change the brightness or contrast of an
+image while converting it to its new representation.
+.PP
+The following describes, in some detail, the various mappings supported by 
+\fBvconvert\fP. Here the full range of pixel values capable of being 
+represented in the source image is denoted [\fISmin\fP,\fISmax\fP]; the 
+actual range of pixel values present in the source image is denoted 
+[\fIAmin\fP,\fIAmax\fP]; and the full range of pixel values capable of 
+being represented in the destination image is denoted 
+[\fIDmin\fP,\fIDmax\fP]. (For \fBfloat\fP and \fBdouble\fP pixels, the 
+ranges [\fISmin\fP,\fISmax\fP] and [\fIDmin\fP,\fIDmax\fP] are taken to 
+be [-1,+1].) Define \fISabs\fP = max ( |\fISmin\fP|, |\fISmax\fP| ), and 
+similarly define \fIAabs\fP. Then the various mappings supported by
+\fBvconvert\fP are: 
+.IP \fBrange\fP 8n
+This is \fBvconvert's\fP default mapping, which preserves the appearance of 
+an image. It maps [-\fISabs\fP,\fISabs\fP] to [-\fIDmax\fP,\fIDmax\fP]. 
+For example, a \fBubyte\fP image is converted to an \fBsbyte\fP image by 
+dividing each pixel value by 2. 
+.IP \fBcopy\fP
+This copies pixels unchanged without scaling them according to their new 
+representation. It maps [-\fISabs\fP,\fISabs\fP] to 
+[-\fISabs\fP,\fISabs\fP]. For example, a \fBubyte\fP image is converted to 
+an \fBsbyte\fP image by copying pixel values that are less than or equal to 
+127, and setting to 127 those that are greater than 127. 
+.IP \fBopt1\fP
+This enhances the contrast of an image while increasing all intensity
+levels by a constant multiple. It maps [-\fIAabs\fP,\fIAabs\fP] to 
+[-\fIDmax\fP,\fIDmax\fP].
+.IP \fBopt2\fP
+This enhances the contrast of an image. It not only increases intensity
+levels by a constant multiple, it also shifts the range of intensity levels
+by subtracting a constant term. The exact mapping depends on the
+values of \fIAmin\fP and \fIAmax\fP:
+.RS 10n
+.IP "when \fIAmin\fP = \fIAmax\fP < 0" 25n
+each destination pixel is \fIDmin\fP.
+.IP "when \fIAmin\fP = \fIAmax\fP = 0"
+each destination pixel is 0.
+.IP "when 0 < \fIAmin\fP = \fIAmax\fP"
+each destination pixel is \fIDmax\fP.
+.IP "when \fIAmin\fP < \fIAmax\fP < 0"
+it maps [\fIAmin\fP,\fIAmax\fP] to [\fIDmin\fP,\-\fIe\fP].
+.IP "when \fIAmin\fP < \fIAmax\fP = 0"
+it maps [\fIAmin\fP,0] to [\fIDmin\fP,0].
+.IP "when \fIAmin\fP < 0 < \fIAmax\fP"
+it maps [-\fIAabs\fP,\fIAabs\fP] to [\-\fIDmax\fP,\fIDmax\fP].
+.IP "when 0 = \fIAmin\fP < \fIAmax\fP"
+it maps [0,\fIAmax\fP] to [0,\fIDmax\fP].
+.IP "when 0 < \fIAmin\fP < \fIAmax\fP"
+it maps [\fIAmin\fP,\fIAmax\fP] to [\fIe\fP,\fIDmax\fP].
+.RE
+.IP "" 8n
+Here, \fIe\fP is 1 / (\fIAmax\fP - \fIAmin\fP + 1) if destination
+pixels are \fBfloat\fP or \fBdouble\fP, and it is 1 otherwise.
+.IP \fBopt3\fP
+This enhances the contrast of an image but, unlike \fBopt1\fP and
+\fBopt2\fP it doesn't necessarily preserve the signs of pixel values. The 
+exact mapping depends on the values of \fIAmin\fP and \fIAmax\fP:
+.RS 10n
+.IP "when \fIAmin\fP = \fIAmax\fP < 0" 25n
+each destination pixel is \fIDmin\fP.
+.IP "when \fIAmin\fP = \fIAmax\fP = 0"
+each destination pixel is 0.
+.IP "when 0 < \fIAmin\fP = \fIAmax\fP"
+each destination pixel is \fIDmax\fP.
+.IP "when \fIAmin\fP < \fIAmax\fP"
+it maps [\fIAmin\fP,\fIAmax\fP] to [\fIDmin\fP,\fIDmax\fP].
+.RE
+.IP \fBlinear\fP 8n
+This is an arbitrary mapping of the form:
+
+	\fIdestination-pixel\fP := \fIsource-pixel\fP * \fIa\fP + \fIb\fP
+
+where the values \fIa\fP and \fIb\fP are specified by command line options.
+.PP
+When floating point pixel values are converted to an integer representation
+each is rounded to the nearest integer after being mapped. Also, if a
+destination pixel value falls outside the range [\fIDmin\fP,\fIDmax\fP],
+it is set to \fIDmin\fP or \fIDmax\fP and a warning message is issued.
+.SH "COMMAND LINE OPTIONS"
+\fBvconvert\fP accepts the following options:
+.IP \fB-help\fP 15n
+Prints a message describing options.
+.IP "\fB-in\fP \fIinfile\fP"
+Specifies the Vista data file containing the images to be converted. 
+.IP "\fB-out\fP \fIoutfile\fP"
+Specifies where the converted images should be written as a Vista data 
+file.
+.IP "\fB-repn\fP \fBbit\fP | \fBubyte\fP | \fBsbyte\fP | \fBshort\fP | \
+\fBlong\fP | \fBfloat\fP | \fBdouble\fP"
+Specifies the pixel representation to which images should be converted.
+Default: \fBubyte\fP.
+.IP "\fB-map\fP range\fP | \fBcopy\fP | \fBopt1\fP | \fBopt2\fP | \
+\fBop3\fP | \fBlinear\fP"
+Specifies the mapping of input pixel values to output pixel values.
+Default: \fBrange\fP.
+.IP "\fB-a\fP \fIa\fP and \fB-b\fP \fIb\fP"
+Specify the values \fIa\fP and \fIb\fP to be used when \fB-map linear\fP
+is the chosen mapping.
+.PP
+Input and output files can be specified on the command line or allowed to
+default to the standard input and output streams.
+.SH "SEE ALSO"
+.na
+.nh
+.BR VConvertImageCopy (3Vi),
+.BR VConvertImageLinear (3Vi),
+.BR VConvertImageOpt (3Vi),
+.BR VConvertImageRange (3Vi)
+.br
+.BR VImage (3Vi),
+.BR Vista (7Vi)
+.hy
+.ad
+.SH AUTHOR
+Art Pope <pope@cs.ubc.ca>

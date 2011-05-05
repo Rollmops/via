@@ -1,0 +1,45 @@
+.ds Vn 1.12
+.TH vinvert 1Vi "24 April 1993" "Vista Version \*(Vn"
+.SH NAME
+vinvert \- invert image pixel values
+.SH SYNOPSIS
+\fBvinvert\fR [\fIoption\fR ...] [\fIinfile\fR] [\fIoutfile\fR]
+.SH DESCRIPTION
+\fBvinvert\fP inverts each input image to produce a corresponding output 
+image. The operation is suitable for swapping black and white in a 
+grey-scale image. 
+.PP
+Each output pixel is computed from the corresponding input pixel by
+.PP
+.RS
+\fIout-pixel\fP = \fIM\fP - \fIin-pixel\fP
+.RE
+.PP
+where \fIM\fP is the maximum value allowed by the pixel representation, or 
+1 in the case of \fBfloat\fP or \fBdouble\fP pixels. Input pixel values 
+must lie in the range [0,\fIM\fP]. 
+.PP
+Each output image has the same number of bands, rows and columns, and the
+same pixel representation, as the corresponding input image.
+.SH "COMMAND LINE OPTIONS"
+\fBvinvert\fP accepts the following options:
+.IP \fB-help\fP 15n
+Prints a message describing options.
+.IP "\fB-in\fP \fIinfile\fP"
+Specifies a Vista data file containing the input images.
+.IP "\fB-out\fP \fIoutfile\fP"
+Specifies where to write the output images as a Vista data file.
+.PP
+Input and output files can be specified on the command line or allowed to
+default to the standard input and output streams.
+.SH "SEE ALSO"
+.na
+.nh
+.BR vnegate (1Vi),
+.BR vop (1Vi),
+.BR VImage (3Vi),
+.BR Vista (7Vi)
+.hy
+.ad
+.SH AUTHOR
+Art Pope <pope@cs.ubc.ca>

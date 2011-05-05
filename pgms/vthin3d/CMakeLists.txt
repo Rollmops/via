@@ -1,0 +1,8 @@
+PROJECT(vthin3d)
+
+ADD_EXECUTABLE(vthin3d vthin3d.c)
+TARGET_LINK_LIBRARIES(vthin3d via)
+
+INSTALL(TARGETS vthin3d
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

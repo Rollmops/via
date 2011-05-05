@@ -1,0 +1,8 @@
+PROJECT(vdist3d)
+
+ADD_EXECUTABLE(vdist3d vdist3d.c)
+TARGET_LINK_LIBRARIES(vdist3d via)
+
+INSTALL(TARGETS vdist3d
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

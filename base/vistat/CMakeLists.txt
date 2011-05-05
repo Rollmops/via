@@ -1,0 +1,8 @@
+PROJECT(VISTAT)
+
+ADD_EXECUTABLE(vistat vistat.c)
+TARGET_LINK_LIBRARIES(vistat via)
+
+INSTALL(TARGETS vistat
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

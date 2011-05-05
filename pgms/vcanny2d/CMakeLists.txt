@@ -1,0 +1,8 @@
+PROJECT(vcanny2d)
+
+ADD_EXECUTABLE(vcanny2d vcanny2d.c)
+TARGET_LINK_LIBRARIES(vcanny2d via)
+
+INSTALL(TARGETS vcanny2d
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

@@ -1,0 +1,8 @@
+PROJECT(PLAINTOV)
+
+ADD_EXECUTABLE(plaintov plaintov.c)
+TARGET_LINK_LIBRARIES(plaintov via)
+
+INSTALL(TARGETS plaintov
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

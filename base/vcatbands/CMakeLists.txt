@@ -1,0 +1,8 @@
+PROJECT(VCATBANDS)
+
+ADD_EXECUTABLE(vcatbands vcatbands.c)
+TARGET_LINK_LIBRARIES(vcatbands via)
+
+INSTALL(TARGETS vcatbands
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

@@ -1,0 +1,8 @@
+PROJECT(VCONVERT)
+
+ADD_EXECUTABLE(vconvert vconvert.c)
+TARGET_LINK_LIBRARIES(vconvert via)
+
+INSTALL(TARGETS vconvert
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

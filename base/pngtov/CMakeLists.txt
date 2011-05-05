@@ -1,0 +1,8 @@
+PROJECT(PNGTOV)
+
+ADD_EXECUTABLE(pngtov pngtov.c)
+TARGET_LINK_LIBRARIES(pngtov via png)
+
+INSTALL(TARGETS pngtov
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

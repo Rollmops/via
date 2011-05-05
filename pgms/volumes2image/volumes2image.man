@@ -1,0 +1,39 @@
+.ds Vi Vista
+.ds Vn 2.1
+.TH volumes2image 1Vi "15 Februar 1994" "\*(Vi Version \*(Vn"
+.SH NAME
+volumes2image \- convert a volume set representation to raster image representation.
+.SH SYNOPSIS
+\fBvolumes2image\fR \
+[\fIinfile\fR] [\fIoutfile\fR]
+.SH DESCRIPTION
+\fBvolumes2image\fP converts an image encoded 
+in a volume set representation into a raster image.
+If the input volume set contains just one volume, the output
+image will be of type "bit". Otherwise, it will be of type "short",
+such that each pixel receives the grey value label of the volume to which
+it belongs.
+.LP
+The input image must be of type "volumes". The output image
+will be of type "bit" or "short".
+
+.SH COMMAND LINE OPTIONS
+\fBvolumes2image\fP accepts the following options:
+.IP \fB-help\fP 15n
+Prints a message describing options.
+.IP "\fB-in\fP \fIinfile\fP"
+Specifies the Vista data file containing the input images.
+.IP "\fB-out\fP \fIoutfile\fP"
+Specifies where to write the output images as a Vista data file.
+.LP
+Input and output files can be specified on the command line or allowed to
+default to the standard input and output streams.
+.SH "SEE ALSO"
+.na
+.nh
+.BR VImage (3Vi),
+.BR Vista (7Vi)
+.hy
+.ad
+.SH AUTHOR
+Gabriele Lohmann <lohmann@cns.mpg.de>

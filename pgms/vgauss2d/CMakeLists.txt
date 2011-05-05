@@ -1,0 +1,8 @@
+PROJECT(vgauss2d)
+
+ADD_EXECUTABLE(vgauss2d vgauss2d.c)
+TARGET_LINK_LIBRARIES(vgauss2d via)
+
+INSTALL(TARGETS vgauss2d
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

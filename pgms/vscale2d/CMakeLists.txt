@@ -1,0 +1,8 @@
+PROJECT(vscale2d)
+
+ADD_EXECUTABLE(vscale2d vscale2d.c)
+TARGET_LINK_LIBRARIES(vscale2d via)
+
+INSTALL(TARGETS vscale2d
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

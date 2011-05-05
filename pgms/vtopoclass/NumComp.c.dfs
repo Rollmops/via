@@ -1,0 +1,167 @@
+/*
+** get number of 26-connected components in 3x3x3 neighbourhood
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+/* From the Vista library: */
+#include <vista/Vlib.h>
+#include <vista/VImage.h>
+#include <vista/mu.h>
+#include <vista/option.h>
+
+typedef struct {
+  short b;   /* band   */
+  short r;   /* row    */
+  short c;   /* column */
+} Voxel;
+
+#define Stacksize 30
+
+typedef struct {
+  Voxel A[Stacksize];
+  int top;
+} Stack;
+
+Stack queue;
+
+
+int
+VNumComp26(int e[3][3][3],int d[3][3][3])
+{
+  int nbands=3,nrows=3,ncols=3;
+  int b,r,c,bb,rr,cc;
+  int b0,b1,r0,r1,c0,c1;
+  Voxel v,vv;
+  int label,n;
+  
+  for (b=0; b<nbands; b++) {
+    for (r=0; r<nrows; r++) {
+      for (c=0; c<ncols; c++) d[b][r][c] = 0;
+    }
+  }
+
+  label = 0;
+
+  for (b=0; b<nbands; b++) {
+    for (r=0; r<nrows; r++) {
+      for (c=0; c<ncols; c++) {
+	if (e[b][r][c] == 0) continue;
+	if (d[b][r][c] > 0) continue;
+
+	queue.top = -1;
+
+	label++;
+	v.b = b;
+	v.r = r;
+	v.c = c;
+
+	queue.A[++(queue.top)] = v;
+
+	d[b][r][c] = label;
+
+	while (queue.top >= 0) {
+	  v = queue.A[(queue.top)--];
+
+	  b0 = (v.b > 0) ? v.b - 1 : 0;
+	  b1 = (v.b < 2) ? v.b + 1 : 2;
+	  for (bb=b0; bb<=b1; bb++) {
+
+	    r0 = (v.r > 0) ? v.r - 1 : 0;
+	    r1 = (v.r < 2) ? v.r + 1 : 2;
+	    for (rr=r0; rr<=r1; rr++) {
+
+	      c0 = (v.c > 0) ? v.c - 1 : 0;
+	      c1 = (v.c < 2) ? v.c + 1 : 2;
+	      for (cc=c0; cc<=c1; cc++) {
+
+		if (bb == v.b && rr == v.r && cc == v.c) continue;
+		if (e[bb][rr][cc] == 0) continue;
+		if (d[bb][rr][cc] > 0) continue;
+		
+		d[bb][rr][cc] = label;
+
+		vv.b = bb;
+		vv.r = rr;
+		vv.c = cc;
+		queue.A[++(queue.top)] = vv;
+	      }
+	    }
+	  }
+	}
+      }
+    }
+  }
+  return label;
+}
+
+
+
+int
+VNumComp6(int e[3][3][3], int d[3][3][3])
+{  
+  int nbands=3,nrows=3,ncols=3;
+  int b,r,c;
+  Voxel v,vv;
+  int label,n;
+  int ba[6],ra[6],ca[6],m,i;
+
+  for (b=0; b<nbands; b++) {
+    for (r=0; r<nrows; r++) {
+      for (c=0; c<ncols; c++) d[b][r][c] = 0;
+    }
+  }
+
+  label = 0;
+  for (b=0; b<nbands; b++) {
+    for (r=0; r<nrows; r++) {
+      for (c=0; c<ncols; c++) {
+	if (e[b][r][c] == 0) continue;
+	if (d[b][r][c] > 0) continue;
+
+	queue.top = -1;
+
+	label++;
+	n = 1;
+
+	v.b = b;
+	v.r = r;
+	v.c = c;
+
+	queue.A[++(queue.top)] = v;
+	d[b][r][c] = label;
+
+	while (queue.top >= 0) {
+	  v = queue.A[(queue.top)--];
+
+	  for (i=0; i<6; i++) {
+	    ba[i] = v.b;
+	    ra[i] = v.r;
+	    ca[i] = v.c;
+	  }
+	  m = 0;
+	  if (v.b > 0) ba[m++] = v.b - 1;
+	  if (v.r > 0) ra[m++] = v.r - 1;
+	  if (v.c > 0) ca[m++] = v.c - 1;
+
+	  if (v.b < 2) ba[m++] = v.b + 1;
+	  if (v.r < 2) ra[m++] = v.r + 1;
+	  if (v.c < 2) ca[m++] = v.c + 1;
+
+	  for (i=0; i<m; i++) {
+	    if (e[ba[i]][ra[i]][ca[i]] == 0) continue;
+	    if (d[ba[i]][ra[i]][ca[i]] > 0) continue;
+	    d[ba[i]][ra[i]][ca[i]] = label;
+
+	    vv.b = ba[i];
+	    vv.r = ra[i];
+	    vv.c = ca[i];
+	    queue.A[++(queue.top)] = vv;
+	  }
+	}
+      }
+    }
+  }
+  return label;
+}

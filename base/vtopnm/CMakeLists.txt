@@ -1,0 +1,8 @@
+PROJECT(VTOPNM)
+
+ADD_EXECUTABLE(vtopnm vtopnm.c)
+TARGET_LINK_LIBRARIES(vtopnm via)
+
+INSTALL(TARGETS vtopnm
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

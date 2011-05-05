@@ -1,0 +1,8 @@
+PROJECT(vcanny3d)
+
+ADD_EXECUTABLE(vcanny3d vcanny3d.c)
+TARGET_LINK_LIBRARIES(vcanny3d via)
+
+INSTALL(TARGETS vcanny3d
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

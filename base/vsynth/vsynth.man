@@ -1,0 +1,155 @@
+.ds Vn 1.12
+.TH vsynth 1Vi "31 March 1994" "Vista Version \*(Vn"
+.SH NAME
+vsynth \- synthesize an image
+.SH SYNOPSIS
+\fBvsynth -pattern \fIpattern\fR [\fB-\fIoption\fR ...] [\fIoutfile\fR]
+.SH DESCRIPTION
+\fBvsynth\fP creates a one-band image with a specified size, pixel
+representation, and pattern of pixel values.
+.PP
+The program knows how to create several different types of patterns. These
+are described below under \fBPATTERNS\fP.
+.SH "COMMAND LINE OPTIONS"
+\fBvsynth\fP accepts the following options in addition to those described
+below under \fBPATTERNS\fP.
+.IP \fB-help\fP 15n
+Prints a message describing options.
+.IP "\fB-out\fP \fIoutfile\fP"
+Specifies where the synthesized image is to be written as a Vista data 
+file.
+.IP "\fB-pattern\fP \fIpattern\fP"
+Specifies, with one of the keywords listed below, the type of pattern to be
+used to set pixel values.
+.IP "\fB-nrows\fP \fInrows\fP and \fB-ncolumns\fP \fIncolumns\fP"
+Specify the size of the synthesized image. Default: 256 rows and columns.
+.IP "\fB-repn\fP \fBbit\fP | \fBubyte\fP | \fBsbyte\fP | \fBshort\fP | \
+\fBlong\fP | \fBfloat\fP | \fBdouble\fP"
+Specifies the pixel representation of the synthesized image. 
+Default: \fBfloat\fP.
+.IP "\fB-name\fP \fIname\fP"
+Specifies the name to be given the synthesized image. Default: ``image''.
+.PP
+The output file can be specified on the command line or allowed to default
+to the standard output stream.
+.SH PATTERNS
+The \fB-pattern\fP option specifies which of the following patterns is used
+to initialized pixel values. For each type of pattern there are additional
+options that may be used to specify pattern parameters. In general, numeric
+parameters are not restricted to just integer values.
+.ta 26n
+.SS Constant
+.nf
+ \fB-pattern constant\fP
+[\fB-base\fP \fIb\fP]	Default: 0.
+.fi
+.IP
+All pixel values are set to \fIb\fP.
+.SS Impulse
+.nf
+ \fB-pattern impulse\fP
+[\fB-amplitude\fP \fIa\fP]	Default: 1.
+[\fB-base\fP \fIb\fP]	Default: 0.
+[\fB-origin\fP \fIi j\fP]	Default: image center.
+.fi
+.IP
+The pixel at row\ \fIi\fP, column\ \fIj\fP is set to \fIa\fP; all others are
+set to \fIb\fP. (\fIi\fP and \fIj\fP are truncated to integers.)
+.SS Ramp
+.nf
+ \fB-pattern ramp\fP
+[\fB-amplitude\fP \fIa\fP]	Default: 1.
+[\fB-base\fP \fIb\fP]	Default: 0.
+[\fB-origin\fP \fIi j\fP]	Default: image center.
+[\fB-orientation\fP \fId\fP]	Default: 0.
+.fi
+.IP
+The image is filled with a ramp whose slope is \fIa\fP units per pixel. The
+ramp is centered at row\ \fIi\fP, column\ \fIj\fP, where it has the value
+\fIb\fP. The ramp increases in the direction \fId\fP, which is measured
+CCW in degrees from the direction of increasing column number.
+.SS "Sine Grating"
+.nf
+ \fB-pattern sine\fP
+[\fB-amplitude\fP \fIa\fP]	Default: 1.
+[\fB-base\fP \fIb\fP]	Default: 0.
+[\fB-origin\fP \fIi j\fP]	Default: image center.
+[\fB-phase\fP \fIw\fP]	Default: 0.
+.ta 4n 8n 26n
+	and one of
+		[\fB-frequency\fP \fIf\fP]	Default: 0.
+		[\fB-orientation\fP \fId\fP]	Default: 0.
+	or
+		[\fB-period\fP \fIt\fP]	Default: 8.
+		[\fB-orientation\fP \fId\fP]	Default: 0.
+	or
+		[\fB-xfreq\fP \fIx\fP]	Default: 0.
+		[\fB-yfreq\fP \fIy\fP]	Default: 0.
+.ta 26n
+.fi
+.IP
+The image is filled with a sine grating. The grating has a DC component of
+\fIb\fP and an amplitude of \fIa\fP (or 2\fIa\fP peak-to-peak). Its
+frequency and direction may be specified by any of three combinations of
+frequency (in cycles per pixel, measured either in the direction of the
+grating or as horizontal and vertical components), period (in pixels per
+cycle), and orientation (in degrees CCW from the direction of increasing
+column number).  The grating is shifted so that at row\ \fIi\fP, 
+column\ \fIj\fP it has phase \fIw\fP\ radians.
+.SS "Zone Plate"
+.nf
+ \fB-pattern zone\fP
+[\fB-amplitude\fP \fIa\fP]	Default: 1.
+[\fB-base\fP \fIb\fP]	Default: 0.
+[\fB-origin\fP \fIi j\fP]	Default: image center.
+[\fB-period\fP \fIt\fP]	Default: 8.
+[\fB-phase\fP \fIw\fP]	Default: 0.
+.fi
+.IP
+The image is filled with the zone plate pattern defined by 
+\fIf\fP(\fIr\fP)\ =\ \fIa\fP\ cos(\fIr\fP^2/\fIt\fP +\ \fIw\fP)\ +\ \fIb\fP,
+where \fIr\fP is the radial distance from the origin at row\ \fIi\fP, 
+column\ \fIj\fP.
+.SS "Uniformly Distributed Noise"
+.nf
+ \fB-pattern uniform\fP
+[\fB-amplitude\fP \fIa\fP]	Default: 1.
+[\fB-base\fP \fIb\fP]	Default: 1.
+[\fB-seed\fP \fIs\fP]	Default: a random number.
+.fi
+.IP
+Pixels are set to random values drawn independently from
+[\fIb\fP,\fIb\fP+\fIa\fP] according to a uniform distribution.  The random
+number generator is initialized with the seed \fIs\fP.
+.SS "Normally Distributed Noise"
+.nf
+ \fB-pattern normal\fP
+[\fB-amplitude\fP \fIa\fP]	Default: 1.
+[\fB-base\fP \fIb\fP]	Default: 1.
+[\fB-seed\fP \fIs\fP]	Default: a random number.
+.fi
+.IP
+Pixel values are set to random values drawn independently according to a
+normal (Gaussian) distribution with mean \fIb\fP and standard deviation
+\fIa\fP. The random number generator is initialized with the seed \fIs\fP.
+.SS "Binomially Distributed Noise"
+.nf
+ \fB-pattern binomial\fP
+[\fB-amplitude\fP \fIa\fP]	Default: 1.
+[\fB-base\fP \fIb\fP]	Default: 1.
+[\fB-density\fP \fIp\fP]	Default: 0.5.
+[\fB-seed\fP \fIs\fP]	Default: a random number.
+.fi
+.IP
+Pixel values are drawn at random from a binomial distribution. A pixel is
+given the value \fIb\fP with probability\ 1 -\fIp\fP, and it is given
+the value \fIb\fP+\fIa\fP with probability\ \fIp\fP.
+.SH "SEE ALSO"
+.na
+.nh
+.BR VImage (3Vi),
+.BR Vista (7Vi)
+.hy
+.ad
+.SH AUTHOR
+Art Pope <pope@cs.ubc.ca>

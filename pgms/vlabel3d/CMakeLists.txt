@@ -1,0 +1,8 @@
+PROJECT(vlabel3d)
+
+ADD_EXECUTABLE(vlabel3d vlabel3d.c)
+TARGET_LINK_LIBRARIES(vlabel3d via)
+
+INSTALL(TARGETS vlabel3d
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

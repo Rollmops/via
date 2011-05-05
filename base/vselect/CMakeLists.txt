@@ -1,0 +1,8 @@
+PROJECT(VSELECT)
+
+ADD_EXECUTABLE(vselect vselect.c)
+TARGET_LINK_LIBRARIES(vselect via)
+
+INSTALL(TARGETS vselect
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

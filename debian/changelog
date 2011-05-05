@@ -1,0 +1,53 @@
+via (2.0.1svn191-0) stable; urgency=low
+
+  *renamed via-bin to via-utils
+
+ -- Lipsia Group (The official Lipsia developer group) <lipsia@cbs.mpg.de>  Tue, 09 Nov 2010 12:17:00 +0400 
+
+via (2.0.0-0) stable; urgency=low
+
+  *This version comes with the new lipsia-2.0 package
+   and comprises some minor bug fixes
+  *Fixed type error of VLong (is now long)
+
+ -- Lipsia Group (The official Lipsia developer group) <lipsia@cbs.mpg.de>  Tue, 09 Nov 2010 12:17:00 +0400 
+
+via (1.6.0-2) unstable; urgency=low
+
+  * New internal release
+
+ -- Frank Burkhardt <burk@cbs.mpg.de>  Mon, 20 Jul 2009 11:45:41 +0200
+
+via (1.6.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #521328).
+  * New Upstream Version. Renamed 'vcat' to 'vcatobj' to not conflict with
+    atfs package in Debian.
+  * Update Standards-version to 3.8.2.0 -- no changes necessary.
+  * Update watchfile for recent change in upstream naming scheme.
+  * Add versioned dependency on debhelper (>= 5) upon recommendation by
+    lintian.
+
+ -- Michael Hanke <michael.hanke@gmail.com>  Fri, 19 Jun 2009 13:50:52 +0200
+
+via (1.5.2+svn3529-2) UNRELEASED; urgency=low
+
+  * Add alternative build-dependency on atlas3-base-dev to be able to build
+    the package on Debian etch.
+  * FTP access to the upstream sources needs passive mode. Fixed debian/watch.
+
+ -- Michael Hanke <michael.hanke@gmail.com>  Tue, 14 Apr 2009 02:46:10 +0200
+
+via (1.5.2+svn3529-1) UNRELEASED; urgency=low
+
+  * New Upstream SVN snapshot that relocates the VIA lib headers to their new
+    cannonical location.
+
+ -- Michael Hanke <michael.hanke@gmail.com>  Tue, 31 Mar 2009 22:08:01 +0200
+
+via (1.5.2-1) UNRELEASED; urgency=low
+
+  * Initial Debian packaging. This is a complete rewrite of the original
+    Debian packaging effort done by the upstream developers.
+
+ -- Michael Hanke <michael.hanke@gmail.com>  Thu, 26 Mar 2009 19:46:09 +0100

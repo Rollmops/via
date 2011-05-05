@@ -1,0 +1,8 @@
+PROJECT(vgenus3d)
+
+ADD_EXECUTABLE(vgenus3d vgenus3d.c)
+TARGET_LINK_LIBRARIES(vgenus3d via)
+
+INSTALL(TARGETS vgenus3d
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

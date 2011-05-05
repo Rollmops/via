@@ -1,0 +1,8 @@
+PROJECT(VINVERT)
+
+ADD_EXECUTABLE(vinvert vinvert.c)
+TARGET_LINK_LIBRARIES(vinvert via)
+
+INSTALL(TARGETS vinvert
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

@@ -1,0 +1,51 @@
+.ds Vn 1.12
+.TH pnmtov 1Vi "3 March 1994" "Vista Version \*(Vn"
+.SH NAME
+pnmtov \- convert portable anymap (PNM) image to Vista data file
+.SH SYNOPSIS
+\fBpnmtov\fR [\fB-\fIoption\fR ...] [\fIinfile\fR] [\fIoutfile\fR]
+.SH DESCRIPTION
+\fBpnmtov\fP converts an image from a portable anymap (PNM) file to a Vista 
+data file. The following types of portable anymap may be converted:
+.RS 2n
+.IP \(bu 2n
+Portable bitmap (PBM) and its ``rawbits'' variant. A PBM image is converted
+to a single-band Vista image with \fBbit\fP pixels. Pixel values 0 and 1
+are swapped since, for PBM images, 0 denotes white and 1 denotes black.
+.IP \(bu
+Portable graymap (PGM) and its ``rawbits'' variant. A PGM image is
+converted to a single-band Vista image with \fBubyte\fP pixels. The full
+range of PGM pixel values is mapped to [0,255] in the returned image.
+.IP \(bu
+Portable pixmap (PPM) and its ``rawbits'' variant. A PPM image is converted
+to an RGB color image \fB(nbands:\ 3\fP, \fBncolors:\ 3\fP,
+\fBcolor_interp: rgb\fP) with \fBubyte\fP pixels. The full range of PPM
+pixel values is mapped to [0,255] in the returned image.
+.PP
+.RE
+A wide range of filters are available for converting other image
+formats to PNM.
+.SH "COMMAND LINE OPTIONS"
+\fBpnmtov\fP accepts the following options:
+.IP \fB-help\fP 15n
+Prints a message describing options.
+.IP "\fB-in\fP \fIinfile\fP
+Specifies the input file, which is a PBM, PGM, or PPM file.
+.IP "\fB-out\fP \fIoutfile\fP"
+Specifies the output file, which will be a Vista data file.
+.IP "\fB-name\fP \fIname\fP"
+Specifies the name to be given the converted image. Default: ``image''.
+.PP
+Input and output files can be specified on the command line or allowed to
+default to the standard input and output streams.
+.SH "SEE ALSO"
+.BR VImage (3Vi),
+.BR Vfile (5Vi),
+.BR Vista (7Vi),
+.br
+.BR pnm (5), 
+.BR pbm (5), 
+.BR pgm (5), 
+.BR ppm (5)
+.SH AUTHOR
+Daniel Ko <ko@cs.ubc.ca>

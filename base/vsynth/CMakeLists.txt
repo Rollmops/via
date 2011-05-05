@@ -1,0 +1,8 @@
+PROJECT(VSYNTH)
+
+ADD_EXECUTABLE(vsynth Synth.c  vsynth.c)
+TARGET_LINK_LIBRARIES(vsynth via)
+
+INSTALL(TARGETS vsynth
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

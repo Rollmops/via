@@ -1,0 +1,8 @@
+PROJECT(vlabel2d)
+
+ADD_EXECUTABLE(vlabel2d vlabel2d.c)
+TARGET_LINK_LIBRARIES(vlabel2d via)
+
+INSTALL(TARGETS vlabel2d
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

@@ -1,0 +1,35 @@
+.ds Vn 1.12
+.TH vtopgm 1Vi "24 April 1993" "Vista Version \*(Vn"
+.SH NAME
+vtopgm \- convert image from Vista data file to portable graymap
+.SH SYNOPSIS
+\fBvtopgm\fR [\fB-\fIoption\fR ...] [\fIinfile\fR] [\fIoutfile\fR]
+.SH DESCRIPTION
+\fBvtopgm\fP converts one band of an image to a portable graymap (PGM) 
+file. A wide range of filters are available to convert PGM files to other 
+formats. 
+.PP
+This program only produces portable graymaps whose pixel values are in the 
+range 0 to 255. Any type of Vista image is accepted, but the image is first 
+converted to have \fBubyte\fP pixels if necessary. This conversion is 
+performed by \fBVConvertImageRange\fP(3Vi). 
+.SH "COMMAND LINE OPTIONS"
+\fBvtopgm\fP accepts the following options:
+.IP \fB-help\fP 15n
+Prints a message describing options.
+.IP "\fB-in\fP \fIinfile\fP
+Specifies a Vista data file containing the image to be converted. If the 
+file contains more than one image, only the first is used.
+.IP "\fB-out\fP \fIoutfile\fP"
+Specifies the file to contain the portable graymap.
+.IP "\fB-band\fP \fIband\fP"
+Specifies the image band to be converted. Default: 0.
+.PP
+Input and output files can be specified on the command line or allowed to
+default to the standard input and output streams.
+.SH "SEE ALSO"
+.BR pgm (5),
+.BR VImage (3Vi),
+.BR Vista (7Vi)
+.SH AUTHOR
+David Lowe <lowe@cs.ubc.ca>

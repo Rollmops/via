@@ -1,0 +1,8 @@
+PROJECT(RAWTOV)
+
+ADD_EXECUTABLE(rawtov rawtov.c)
+TARGET_LINK_LIBRARIES(rawtov via)
+
+INSTALL(TARGETS rawtov
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

@@ -1,0 +1,8 @@
+PROJECT(vaniso2d)
+
+ADD_EXECUTABLE(vaniso2d vaniso2d.c)
+TARGET_LINK_LIBRARIES(vaniso2d via)
+
+INSTALL(TARGETS vaniso2d
+        RUNTIME DESTINATION ${VIA_INSTALL_BIN_DIR}
+        COMPONENT RuntimeLibraries)

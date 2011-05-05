@@ -1,0 +1,79 @@
+.ds Vi Vista
+.ds Vn 2.1
+.TH vdist3d 1Vi "17 August 1994" "\*(Vi Version \*(Vn"
+.SH NAME
+vdist3d \- perform a 3D distance transform
+.SH SYNOPSIS
+\fBvdist3d \fB [-\fIoption\fP ...] [\fIinfile\fP] [\fIoutfile\fP]
+
+.SH DESCRIPTION
+\fBvdist3d\fP performs a 3D
+distance transform on the \fIsource\fP image
+to produce a file of a distance transformed \fIdestination\fP image.  
+Each pixel in the output image contains the distance to the nearest
+feature element measured in a Euclidean or Chamfer metric.
+If needed, three images containing the addresses of the nearest
+foreground pixels will also be produced.
+
+.LP
+The input image must be of type VBit. The output image
+will be of type VFloat. If present, 
+the vector images will be of type VShort.
+
+.LP
+Input and output files can be specified on the command line or
+allowed to default to stdin and stdout.
+
+.LP
+If the metric is \fIeuclidean\fP, and no vectors are needed,
+the algorithm used is Saito/Toriwaki's algorithm.
+If the metric is \fIeuclidean\fP, but vectors are needed,
+then Daniellson's algorithm is used.
+For the chamfer metric the algorithm by Borgefors
+is used.
+Note that Daniellson's algorithm is the most expensive
+(both w.r.t computing time as well as w.r.t space).
+The second most expensive algorithm is Saito/Toriwaki's.
+However, it is not possible to obtain the distance vectors from
+this algorithm.
+The cheapest is Borgefors's, which also does not yield
+the distance vectors.
+
+Note that in some rare cases, Daniellson's algorithm fails.
+In that case, use Saito's algorithm (which always works)
+and do without the distance vectors.
+
+
+.SH LITERATURE
+Toyofumi Saito, Jun-Ichiro Toriwaki,
+New algorithms for euclidean distance transformation of a n-dimensional
+picture with applications,
+Pattern Recognition, Vol. 27, No. 11, pp 1551-1565, 1994.
+
+Gunilla Borgefors,
+"Distance Transformations in Arbitrary Dimensions",
+Computer Vision, Graphics and Image Processing,
+Vol 27, pp. 321-345, 1984.
+
+P.-E. Daniellson,
+"Euclidean Distance Mapping",
+Computer Graphics and IMage Processing,
+Vol. 14, pp. 227-248, 1980.
+
+
+.SH "COMMAND LINE OPTIONS"
+\fBvdist3d\fP accepts the following options in any order:
+.IP \fB-help\fP 1.5i
+Causes \fBvdist3d\fP to print out a message describing its options.
+.IP "\fB-metric\fP \fIeuclidean/chamfer\fP"
+Determines which metric to use.
+.IP "\fB-vector\fP \fIyes/no\fP"
+Determines whether or not a vector image will be produced.
+Default: no.
+
+.SH "SEE ALSO"
+.BR Vista (7Vi)
+.SH AUTHOR
+Gabriele Lohmann <lohmann@cns.mpg.de>
+
+

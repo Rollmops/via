@@ -1,0 +1,62 @@
+.ds Vi Vista
+.ds Vn 2.0
+.TH vtopoclass 1Vi "15 Februar 1994" "\*(Vi Version \*(Vn"
+.SH NAME
+vtopoclass \- perform a topological classification
+.SH SYNOPSIS
+\fBvtopoclass\fR [\fB-\fIoption\fR ...] \
+[\fIinfile\fR] [\fIoutfile\fR]
+.SH DESCRIPTION
+\fBvtopoclass\fP
+performs a topological classification on a binary input image and
+produce a labelled output image.
+.LP
+Typically, this program is applied to a skeletonized binary image.
+It will attribute a label to each foreground voxel, which characterizes
+its topological type. 
+.LP
+The input image must be of type bit. The output 
+image will be of type ubyte.
+.LP
+Output codes are the following:
+.LP
+.RS 
+    1:  interior point 
+    2:  isolated point
+    3:  border point
+    4:  curve point
+    5:  curves junction
+    6:  surface point
+    7:  surface/curve junction
+    8:  surfaces junction
+    9:  surfaces/curve junction
+.RE
+.LP
+.SH LIT:
+.na
+.nh
+G. Malandain, G. Bertrand, N. Ayache:
+"Topological Segmentation of discrete surfaces",
+Intern. Journal of Computer Vision, 10:2, pp. 183-197, 1993
+
+.SH COMMAND LINE OPTIONS
+\fBvtopoclass\fP accepts the following options:
+.IP \fB-help\fP 15n
+Prints a message describing options.
+.IP "\fB-in\fP \fIinfile\fP"
+Specifies the Vista data file containing the input images.
+.IP "\fB-out\fP \fIoutfile\fP"
+Specifies where to write the output images as a Vista data file.
+.LP
+Input and output files can be specified on the command line or allowed to
+default to the standard input and output streams.
+.SH "SEE ALSO"
+.na
+.nh
+.BR vthin3d (1Vi),
+.BR VImage (3Vi),
+.BR Vista (7Vi)
+.hy
+.ad
+.SH AUTHOR
+Gabriele Lohmann <lohmann@cns.mpg.de>

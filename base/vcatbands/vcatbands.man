@@ -1,0 +1,58 @@
+.ds Vn 1.12
+.TH vcatbands 1Vi "3 June 1994" "Vista Version \*(Vn"
+.SH NAME
+vcatbands \- concatenate image bands into a single image
+.SH SYNOPSIS
+\fBvcatbands\fR [\fB-\fIoption\fR ...] [\fIinfile\fR ...] [\fB> \fIoutfile\fR]
+.SH DESCRIPTION
+\fBvcatbands\fP concatenates one or more images to produce a single,
+multi-band image. All images read from all input files are combined to
+produce a single image, which is written to the output file. 
+.PP
+The input
+images must all have the same number of rows, number of columns, and 
+pixel representation.
+.SH "COMMAND LINE OPTIONS"
+\fBvcatbands\fP accepts the following options:
+.IP \fB-help\fP 15n
+Print a message describing options.
+.IP "\fB-in\fP \fIinfile\fP ..."
+Specifies one or more Vista data files containing images.
+.IP "\fB-out\fP \fIoutfile\fP"
+Specifies where to write the output as a Vista data file.
+.IP "\fB-name\fP \fIname\fP"
+Specifies the name to be given the created image. Default: ``image''.
+.IP "\fB-frame_interp none\fP
+.PD 0
+.IP "\fB-viewpoint_interp none\fP | \fBstereo_pair\fP"
+.IP "\fB-color_interp none\fP | \fBrgb\fP"
+.HP 10n
+\fB-component_interp none\fP | \fBcomplex\fP | \fBgradient\fP |
+\fBintensity\fP | \fBorientation\fP
+.RS 15n
+Specify values for band interpretation attributes given to the new image. 
+All default to \fBnone\fP.
+.RE
+.PD
+.IP "\fB-nframes\fP \fInframes\fP" 15n
+.PD 0
+.IP "\fB-nviewpoints\fP \fInviewpoints\fP"
+.IP "\fB-ncolors\fP \fIncolors\fP"
+.IP "\fB-ncomponents\fP \fIncomponents\fP"
+Specify the number of frames, viewpoints, colors, and components
+represented by bands of the new image. If not specified \fInframes\fP is
+deduced from the number of bands in the image; the others have defaults
+based on what the various \fB-..._interp\fP options have specified.
+.PD
+.PP
+Input files can be specified on the command line or allowed to default to 
+the standard input stream. The output file can be specified by the \fB-out\fP 
+option or allowed to default to the standard output stream. 
+.SH "SEE ALSO"
+.BR vcat (1Vi),
+.BR VImage (3Vi),
+.BR Vista (7Vi)
+.SH NOTES
+All input files are read before the output file is opened and written.
+.SH AUTHOR
+Art Pope <pope@cs.ubc.ca>

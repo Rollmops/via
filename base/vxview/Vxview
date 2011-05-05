@@ -1,0 +1,221 @@
+! Default resource values for the vxview application.
+
+! General appearance defaults:
+Vxview*buttonFontList:                          *new cent*-bold-r-*-*-12-*
+Vxview*defaultFontList:                         *new cent*-medium-r-*-*-12-*
+Vxview*labelFontList:                           *new cent*-medium-r-*-*-12-*
+
+Vxview*XmForm.horizontalSpacing:                5
+Vxview*XmForm.verticalSpacing:                  5
+Vxview*XmForm.marginHeight:                     5
+Vxview*XmForm.marginWidth:                      5
+
+Vxview*buttons.marginHeight:                    0
+Vxview*buttons.marginWidth:                     0
+Vxview*buttons.XmPushButtonGadget.height:       25
+
+! Don't edit these resources:
+Vxview.appDefaultsFileFound:                    TRUE
+Vxview.mappedWhenManaged:                       FALSE
+
+! For those who aren't using the Motif Window Manager, this will
+! at least get some keys working:
+Vxview*defaultVirtualBindings:                  \n\
+        osfHelp      : <Key>Help\n\
+        osfLeft      : <Key>Left\n\
+        osfUp        : <Key>Up\n\
+        osfRight     : <Key>Right\n\
+        osfDown      : <Key>Down\n\
+        osfBackSpace : <Key>BackSpace\n\
+        osfDelete    : <Key>Delete\n
+
+! General appearance of view:
+Vxview.view.minHeight:                          250
+Vxview.view.minWidth:                           300
+
+! Appearance of view's menu bar:
+Vxview*menubar.button_0.labelString:            File
+Vxview*menubar.button_0.mnemonic:               F
+Vxview*menubar.button_1.labelString:            View
+Vxview*menubar.button_1.mnemonic:               V
+Vxview*menubar.button_2.labelString:            Help
+Vxview*menubar.button_2.mnemonic:               H
+
+! Appearance of File menu:
+Vxview*file.button_0.labelString:               New View...
+Vxview*file.button_0.mnemonic:                  N
+Vxview*file.button_0.accelerator:               Ctrl <Key> N
+Vxview*file.button_0.acceleratorText:           Ctrl-N
+Vxview*file.button_1.labelString:               Remove View
+Vxview*file.button_1.mnemonic:                  m
+Vxview*file.button_1.accelerator:               Ctrl <Key> W
+Vxview*file.button_1.acceleratorText:           Ctrl-W
+Vxview*file.button_2.labelString:               Open File...
+Vxview*file.button_2.mnemonic:                  O
+Vxview*file.button_2.accelerator:               Ctrl <Key> O
+Vxview*file.button_2.acceleratorText:           Ctrl-O
+Vxview*file.button_3.labelString:               Reread File
+Vxview*file.button_3.mnemonic:                  R
+Vxview*file.button_3.accelerator:               Ctrl <Key> R
+Vxview*file.button_3.acceleratorText:           Ctrl-R
+Vxview*file.button_4.labelString:               Quit
+Vxview*file.button_4.mnemonic:                  Q
+Vxview*file.button_4.accelerator:               Ctrl <Key> Q
+Vxview*file.button_4.acceleratorText:           Ctrl-Q
+
+! Appearance of View menu:
+Vxview*view.button_0.labelString:               Attributes...
+Vxview*view.button_0.mnemonic:                  A
+Vxview*view.button_0.accelerator:               Ctrl <Key> A
+Vxview*view.button_0.acceleratorText:           Ctrl-A
+Vxview*view.button_1.labelString:               Display Prefs...
+Vxview*view.button_1.mnemonic:                  D
+Vxview*view.button_1.accelerator:               Ctrl <Key> D
+Vxview*view.button_1.acceleratorText:           Ctrl-D
+Vxview*view.button_2.labelString:               Edge Data...
+Vxview*view.button_2.mnemonic:                  E
+Vxview*view.button_2.accelerator:               Ctrl <Key> E
+Vxview*view.button_2.acceleratorText:           Ctrl-E
+
+! Appearance of Help menu:
+Vxview*help.button_0.labelString:               Index...
+Vxview*help.button_0.mnemonic:                  I
+Vxview*help.button_1.labelString:               On Version...
+Vxview*help.button_1.mnemonic:                  V
+
+! Appearance of view's left panel:
+Vxview*work.form.width:                         220
+Vxview*work.form.object_label.labelString:      Object:
+Vxview*work.form.object_listSW.topOffset:       5
+Vxview*work.form.object_listSW.leftOffset:      60
+Vxview*work.form*object_list.visibleItemCount:  5
+Vxview*work.form.image_label.labelString:       Image:
+Vxview*work.form.image_label.topOffset:         10
+Vxview*work.form.image_info.leftOffset:         60
+Vxview*work.form.image_info.topOffset:          10
+Vxview*work.form.band_label.topOffset:          10
+Vxview*work.form.band_label.labelString:        Band:
+Vxview*work.form.band_0.leftOffset:             60
+Vxview*work.form.band_scale.leftOffset:         60
+Vxview*work.form.pixel_label.labelString:       Pixel:
+Vxview*work.form.pixel_info.leftOffset:         60
+Vxview*work.form.edge_label.labelString:        Edge:
+Vxview*work.form.edge_info.leftOffset:          60
+Vxview*work.form.point_label.labelString:       Point:
+Vxview*work.form.point_info.leftOffset:         60
+
+! Appearance of view's right panel:
+Vxview*work*image.borderWidth:                  0
+Vxview*work*image.translations:                 #replace\n\
+        <Key>osfHelp: Help()\n\
+        <Key>osfLeft: ImageMove(left)\n\
+        <Key>osfUp: ImageMove(up)\n\
+        <Key>osfRight: ImageMove(right)\n\
+        <Key>osfDown: ImageMove(down)\n\
+        !Ctrl<Btn1Down>: ImageReport()\n\
+        None<Btn1Down>: ImageSelect()\n\
+        <Key>osfSelect: ImageSelect()\n\
+        <Key>space: ImageSelect()\n\
+        <Motion>: ImageTrack()\n\
+        <Leave>: ImageTrack()\n\
+        <Visible>: ImageTrack()\n\
+        !Ctrl<Btn2Down>: MoveZoomCenter()\n\
+        None<Btn2Down>: ZoomIn()\n\
+        None<Btn3Down>: ZoomOut()\n\
+
+! Appearance of file selection dialog:
+Vxview*file_select.dialogTitle:                 File Selection
+Vxview*file_select.pattern:                     *.v
+Vxview*file_select.textColumns:                 50
+
+! Appearance of the edge data dialog:
+Vxview.edge.iconName:                           Edge Data
+Vxview.edge.title:                              Edge Data
+Vxview.edge*text.columns:                       50
+Vxview.edge*text.fontList:                      *courier-bold-r-*-*-12-*
+Vxview.edge*text.rows:                          9
+Vxview.edge*text.scrollVertical:                FALSE
+Vxview.edge*close.labelString:                  Close
+
+! Appearance of the file attributes dialog:
+Vxview*attr.iconName:                           Attrs
+Vxview*attr.title:                              Attributes
+Vxview*attr*text.rows:                          20
+Vxview*attr*text.fontList:                      *courier-bold-r-*-*-12-*
+Vxview*attr*text.columns:                       70
+Vxview*attr*close.labelString:                  Close
+Vxview*attr*help.labelString:                   Help...
+
+! Appearance of help dialog:
+Vxview.help.iconName:                           Help
+Vxview.help.title:                              Vxview Help
+Vxview.help*topics_label.labelString:           Topics
+Vxview.help*topic_list.width:                   140
+Vxview.help*topic_list.visibleItemCount:        10
+Vxview.help*text_label.labelString:             Information
+Vxview.help*text.rows:                          20
+Vxview.help*text.fontList:                      *courier-medium-r-*-*-12-*
+Vxview.help*text.columns:                       70
+Vxview.help*close.defaultButtonShadowThickness: 1
+Vxview.help*close.labelString:                  Close
+
+! Appearance of preferences dialog:
+Vxview*pref.iconName:                           Prefs
+Vxview*pref.title:                              Display Preferences
+
+Vxview*pref*form1.XmForm.shadowThickness:       1
+Vxview*pref*form1.XmForm.shadowType:            SHADOW_IN
+
+Vxview*pref*image_label.labelString:            Image Display
+Vxview*pref*edge_label.labelString:             Edge Display
+Vxview*pref*form1.XmLabelGadget.topOffset:      10
+
+Vxview*pref*brightness_label.labelString:       Brightness
+Vxview*pref*brightness_label.topOffset:         22
+Vxview*pref*brightness_scale.leftOffset:        100
+
+Vxview*pref*contrast_label.labelString:         Contrast
+Vxview*pref*contrast_label.topOffset:           22
+Vxview*pref*contrast_scale.leftOffset:          0
+
+Vxview*pref*XmScale.decimalPoints:              1
+Vxview*pref*XmScale.maximum:                    100
+Vxview*pref*XmScale.minimum:                    -100
+Vxview*pref*XmScale.width:                      300
+
+Vxview*pref*options_label.labelString:          Options
+Vxview*pref*options_label.topOffset:            15
+
+Vxview*pref*ignore_bi.labelString:              Show Bands Individually
+Vxview*pref*ignore_bi.topOffset:                15
+Vxview*pref*ignore_bi.leftOffset:               0
+
+Vxview*pref*intensity_menu.labelString:         Intensity Is:
+Vxview*pref*intensity_menu.button_0.labelString: Absolute Pixel Value
+Vxview*pref*intensity_menu.button_1.labelString: Signed Pixel Value
+Vxview*pref*intensity_menu.leftOffset:          0
+
+Vxview*pref*show_label.labelString:             Show...
+Vxview*pref*show_label.topOffset:               10
+
+Vxview*pref*points.labelString:                 Points
+Vxview*pref*points.leftOffset:                  100
+
+Vxview*pref*lines.labelString:                  Lines
+Vxview*pref*lines.leftOffset:                   0
+
+Vxview*pref*endpoints.labelString:              Edge Endpoints
+Vxview*pref*endpoints.leftOffset:               0
+
+Vxview*pref*close.defaultButtonShadowThickness: 1
+Vxview*pref*close.labelString:                  Close
+Vxview*pref*reset.labelString:                  Reset
+Vxview*pref*help.labelString:                   Help...
+
+! Appearance of version dialog:
+Vxview*version.dialogTitle:                     Version
+
+! Appearance of warning dialog:
+Vxview*warning.dialogTitle:                     Warning
+Vxview*warning.width:                           400
+Vxview*warning.resizePolicy:                    RESIZE_GROW

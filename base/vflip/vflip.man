@@ -1,0 +1,39 @@
+.ds Vn 1.12
+.TH vflip 1Vi "24 April 1993" "Vista Version \*(Vn"
+.SH NAME
+vflip \- flip an image horizontally and/or vertically
+.SH SYNOPSIS
+\fBvflip\fR [\fB-hor\fR] [\fB-vert\fR] [\fB-\fIoption\fR ...] \
+[\fIinfile\fR] [\fIoutfile\fR]
+.SH DESCRIPTION
+\fBvflip\fP flips images horizontally and/or vertically.
+.PP
+A horizontal flip exchanges the left and right sides of an image. A 
+vertical flip exchanges the top and bottom. 
+.SH "COMMAND LINE OPTIONS"
+\fBvflip\fP accepts the following options:
+.IP \fB-help\fP 15n
+Prints a message describing options.
+.IP "\fB-in\fP \fIinfile\fP"
+Specifies a Vista data file containing the input images.
+.IP "\fB-out\fP \fIoutfile\fP"
+Specifies where to write the flipped images as a Vista data file.
+.IP "\fB-horizontal\fP"
+Specifies that a horizontal flip should be performed.
+.IP "\fB-vertical\fP"
+Specifies that a vertical flip should be performed.
+.PP
+If both \fB-horizontal\fP and \fB-vertical\fP are specified, the horizontal 
+flip is performed first. If neither is specified, the images are 
+nevertheless flipped horizontally. 
+.SH "SEE ALSO"
+.na
+.nh
+.BR vrotate (1Vi),
+.BR vtranspose (1Vi),
+.BR VImage (3Vi),
+.BR Vista (7Vi)
+.ad
+.hy
+.SH AUTHOR
+Daniel Ko <ko@cs.ubc.ca>

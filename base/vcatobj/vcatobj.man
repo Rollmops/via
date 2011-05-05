@@ -1,0 +1,30 @@
+.ds Vn 1.12
+.TH vcatobj 1Vi "24 April 1993" "Vista Version \*(Vn"
+.SH NAME
+vcatobj \- concatenate Vista data files
+.SH SYNOPSIS
+\fBvcatobj\fR [\fB-\fIoption\fR ...] [\fIinfile\fR ...] [\fB> \fIoutfile\fR]
+.SH DESCRIPTION
+\fBvcatobj\fP copies the contents of one or more input files to an output file.
+All objects found in all input files (such as images, edge lists, and
+comments) are copied, in order, to the single output file.
+.SH "COMMAND LINE OPTIONS"
+\fBvcatobj\fP accepts the following options:
+.IP \fB-help\fP 15n
+Prints a message describing options.
+.IP "\fB-in\fP \fIinfile\fP ..."
+Specifies one or Vista data files to be input.
+.IP "\fB-out\fP \fIoutfile\fP"
+Specifies where to write the output as a Vista data file.
+.PP
+Input files can be specified on the command line or allowed to default to
+the standard input stream. The output file can be specified by the
+\fB-out\fP option or allowed to default to the standard output stream.
+.SH "SEE ALSO"
+.BR vcatbands (1Vi),
+.BR Vista (7Vi)
+.SH NOTES
+All input files are read before the output file is written. The program vcatobj was originally be known as vcat, created
+by Art Pope.
+.SH AUTHOR
+Art Pope <pope@cs.ubc.ca>
