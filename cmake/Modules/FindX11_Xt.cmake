@@ -36,6 +36,7 @@ SET(X11_LIB_SEARCH_PATH
   /usr/local/lib 
   /usr/openwin/lib 
   /usr/lib 
+  /usr/lib/i386-linux-gnu
   )
 
 
