@@ -41,7 +41,7 @@ VRcsId ("$Id: Fill.c 3177 2008-04-01 14:47:24Z karstenm $");
 
 VBoolean VFillImage (VImage image, VBand band, VDoublePromoted value)
 {
-  int i, npixels;
+  size_t i, npixels;
   VPointer first_pixel;
 
 #define Fill(type)					\

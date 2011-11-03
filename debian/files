@@ -1,4 +1,4 @@
 libvia-doc_2.0.2svn207-0_all.deb doc optional
-libvia2_2.0.2svn207-0_i386.deb libs optional
-libvia-dev_2.0.2svn207-0_i386.deb libdevel optional
-via-utils_2.0.2svn207-0_i386.deb libs optional
+libvia2_2.0.2svn207-0_amd64.deb libs optional
+libvia-dev_2.0.2svn207-0_amd64.deb libdevel optional
+via-utils_2.0.2svn207-0_amd64.deb libs optional
