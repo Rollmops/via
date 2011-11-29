@@ -1,3 +1,9 @@
+via (2.0.3svn272-0) stable; urgency=low
+
+  *fixed bug in VFIllImage
+
+ -- Lipsia Group (The official Lipsia developer group) <lipsia@cbs.mpg.de>  Tue, 29 Nov 2011 12:17:00 +0400 
+
 via (2.0.2svn207-0) stable; urgency=low
 
   *fixed range of VLong
