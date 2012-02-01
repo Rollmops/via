@@ -20,6 +20,23 @@ SET(VIA_INSTALL_DOC_DIR "${CMAKE_INSTALL_PREFIX}/share/doc/via-bin")
 SET(BUILD_VX off CACHE BOOL "build vxlib")
 
 SET(BUILD_APPS off CACHE BOOL "build apps")
+
+# Set default shared library version
+# This library version will be applied to all libraries in the package
+# unless it is not explicitely for a certain lib.
+SET(VIA_VERSION_MAJOR "2")
+SET(VIA_VERSION_MINOR "0")
+SET(VIA_VERSION_PATCH "0")
+
+
+SET(VIA_SHAREDLIB_VERSION
+    "${VIA_VERSION_MAJOR}.${VIA_VERSION_MINOR}.${VIA_VERSION_PATCH}")
+
+STRING(REGEX MATCH "^[0-9]+" VIA_SHAREDLIB_SOVERSION ${VIA_SHAREDLIB_VERSION})
+SET(VIA_LIBRARY_PROPERTIES VERSION ${VIA_SHAREDLIB_VERSION}
+                           SOVERSION ${VIA_SHAREDLIB_SOVERSION}
+                           CLEAN_DIRECT_OUTPUT 1)
+
 add_subdirectory(viaio)
 add_subdirectory(vialib)
 
@@ -43,24 +60,11 @@ endif(BUILD_APPS)
 
 if(BUILD_VX)
   FIND_PACKAGE(Motif REQUIRED)
-  add_subdirectory( vxlib)
+  add_subdirectory(vxlib)
 endif(BUILD_VX)
 
 
-# Set default shared library version
-# This library version will be applied to all libraries in the package
-# unless it is not explicitely for a certain lib.
-SET(VIA_VERSION_MAJOR "2")
-SET(VIA_VERSION_MINOR "0")
-SET(VIA_VERSION_PATCH "0")
 
-
-SET(VIA_SHAREDLIB_VERSION
-    ${VIA_VERSION_MAJOR}.${VIA_VERSION_MINOR}.${VIA_VERSION_PATCH})
-STRING(REGEX MATCH "^[0-9]+" VIA_SHAREDLIB_SOVERSION ${VIA_SHAREDLIB_VERSION})
-SET(VIA_LIBRARY_PROPERTIES VERSION ${VIA_SHAREDLIB_VERSION}
-                           SOVERSION ${VIA_SHAREDLIB_SOVERSION}
-                           CLEAN_DIRECT_OUTPUT 1)
 
 # define global include dir for via headers
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include ${X11_Xutil_INCLUDE_PATH} ${X11_Xt_INCLUDE_PATH})
