@@ -1,11 +1,11 @@
-Format-Specification: http://wiki.debian.org/Proposals/CopyrightFormat
+Format: http://wiki.debian.org/Proposals/CopyrightFormat
 Upstream-Name: via
-Upstream-Maintainer: LIPSIA developers <lipsia@cns.mpg.de>
-Upstream-Source: http://www.cbs.mpg.de/institute/software/lipsia
+Upstream-Contact: LIPSIA developers <lipsia@cns.mpg.de>
+Source: http://www.cbs.mpg.de/institute/software/lipsia
 
 
 Files: *
-Copyright: 1996-2009 Gabriele Lohmann <lohmann@cns.mpg.de>
+Copyright: 1996-2012 Gabriele Lohmann <lohmann@cns.mpg.de>
 License: GPL-2+
  On Debian systems the full text of the GNU General Public License can be found
  in the `/usr/share/common-licenses/GPL' file.
@@ -55,7 +55,7 @@ License: Other
 
 
 Files: debian/*
-Copyright: Copyright 2009, Michael Hanke <michael.hanke@gmail.com>
+Copyright: Copyright 2009-2012, Michael Hanke <michael.hanke@gmail.com>
 License: GPL-2+
  On Debian systems the full text of the GNU General Public License can be found
  in the `/usr/share/common-licenses/GPL' file.
