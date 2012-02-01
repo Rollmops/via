@@ -60,6 +60,7 @@ add_subdirectory(vialib)
 if(BUILD_APPS)
   add_subdirectory(base)
   add_subdirectory(pgms)
+  INSTALL(PROGRAMS via-help DESTINATION bin)
 endif(BUILD_APPS)
 
 if(BUILD_VX)
@@ -67,5 +68,5 @@ if(BUILD_VX)
   add_subdirectory(vxlib)
 endif(BUILD_VX)
 
-INSTALL(PROGRAMS via-help DESTINATION bin)
+
 INSTALL(PROGRAMS via-doc DESTINATION bin)
