@@ -1,22 +1,22 @@
-via (2.0.3svn272-0) stable; urgency=low
+via (2.0.3svn272-0) unstable; urgency=low
 
   *fixed bug in VFIllImage
 
  -- Lipsia Group (The official Lipsia developer group) <lipsia@cbs.mpg.de>  Tue, 29 Nov 2011 12:17:00 +0400 
 
-via (2.0.2svn207-0) stable; urgency=low
+via (2.0.2svn207-0) unstable; urgency=low
 
   *fixed range of VLong
 
  -- Lipsia Group (The official Lipsia developer group) <lipsia@cbs.mpg.de>  Tue, 05 May 2011 12:17:00 +0400 
 
-via (2.0.1svn191-0) stable; urgency=low
+via (2.0.1svn191-0) unstable; urgency=low
 
   *renamed via-bin to via-utils
 
  -- Lipsia Group (The official Lipsia developer group) <lipsia@cbs.mpg.de>  Tue, 09 Nov 2010 12:17:00 +0400 
 
-via (2.0.0-0) stable; urgency=low
+via (2.0.0-0) unstable; urgency=low
 
   *This version comes with the new lipsia-2.0 package
    and comprises some minor bug fixes
@@ -24,13 +24,13 @@ via (2.0.0-0) stable; urgency=low
 
  -- Lipsia Group (The official Lipsia developer group) <lipsia@cbs.mpg.de>  Tue, 09 Nov 2010 12:17:00 +0400 
 
-via (1.6.0-2) unstable; urgency=low
+via (1.6.0-2) ununstable; urgency=low
 
   * New internal release
 
  -- Frank Burkhardt <burk@cbs.mpg.de>  Mon, 20 Jul 2009 11:45:41 +0200
 
-via (1.6.0-1) unstable; urgency=low
+via (1.6.0-1) ununstable; urgency=low
 
   * Initial release (Closes: #521328).
   * New Upstream Version. Renamed 'vcat' to 'vcatobj' to not conflict with

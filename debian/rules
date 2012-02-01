@@ -1,6 +1,13 @@
 #!/usr/bin/make -f
 # -*- makefile -*-
 
+srcpkg = $(shell LC_ALL=C dpkg-parsechangelog | grep '^Source:' | cut -d ' ' -f 2,2)
+debver = $(shell LC_ALL=C dpkg-parsechangelog | grep '^Version:' | cut -d ' ' -f 2,2 )
+upstreamver = $(shell echo $(debver) | cut -d '-' -f 1,1 )
+
+gitver = $(shell [ -x /usr/bin/git ] && git describe --tags --match '*\.*\.*' $$(git merge-base -a HEAD master) | sed -e 's/_/./g' -e 's/-/+git/')
+
+
 # This has to be exported to make some magic below work.
 export DH_OPTIONS
 
@@ -112,14 +119,6 @@ install: build
 	cd debian/tmp/api && doxygen
 
 
-# #create link of libvia.so.0 to new libvia.so.2 for backward compatibility
-# 	echo "/usr/lib/libvia.so.2.0.0 /usr/lib/libvia.so.0 " \
-# 		>> debian/libvia2.links; \
-# 	echo "/usr/lib/libviaio.so.2.0.0 /usr/lib/libviaio.so.0 " \
-# 		>> debian/libvia2.links; \
-
-
-
 # Must not depend on anything. This is to be called by
 # # binary-arch/binary-indep
 # # in another 'make' thread.
@@ -158,3 +157,7 @@ binary-arch: install
 binary: binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary configure
 
+get-orig-source:
+	# orig tarball, turn directory into something nicer
+	git archive --format=tar --prefix=$(srcpkg)-$(gitver)/ HEAD | \
+		gzip -9 > $(srcpkg)_$(gitver).orig.tar.gz
