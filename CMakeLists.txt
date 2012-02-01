@@ -44,7 +44,7 @@ if(BUILD_VX)
   SET(BUILD ${BUILD} vxlib)
 endif(BUILD_VX)
 
-SUBDIRS(${BUILD})
+add_subdirectory(${BUILD})
 
 # Set default shared library version
 # This library version will be applied to all libraries in the package
@@ -52,6 +52,7 @@ SUBDIRS(${BUILD})
 SET(VIA_VERSION_MAJOR "2")
 SET(VIA_VERSION_MINOR "0")
 SET(VIA_VERSION_PATCH "0")
+
 
 SET(VIA_SHAREDLIB_VERSION
     ${VIA_VERSION_MAJOR}.${VIA_VERSION_MINOR}.${VIA_VERSION_PATCH})
@@ -63,5 +64,4 @@ SET(VIA_LIBRARY_PROPERTIES VERSION ${VIA_SHAREDLIB_VERSION}
 # define global include dir for via headers
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include ${X11_Xutil_INCLUDE_PATH} ${X11_Xt_INCLUDE_PATH})
 
-INSTALL(DIRECTORY userdoc/html DESTINATION ${VIA_INSTALL_DOC_DIR} PATTERN ".svn" EXCLUDE)
 INSTALL(PROGRAMS via-help DESTINATION bin)
