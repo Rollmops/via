@@ -1,6 +1,6 @@
 #!/bin/sh
 
-LHELP="/usr/share/doc/via/html/index.html"
+LHELP="/usr/share/doc/libvia-doc/html/index.html"
 DNULL="/dev/null"
 
 if [ ! -f $LHELP ]; then
