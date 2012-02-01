@@ -39,6 +39,7 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: libvia-doc
 Conflicts: via, via-bin
+Replaces: via-bin
 Description: tools for volumetric image analysis
  VIA is a volumetric image analysis suite for functional and structural
  (medical) images. The suite consists of different tools ranging from
