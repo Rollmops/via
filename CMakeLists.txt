@@ -20,7 +20,8 @@ SET(VIA_INSTALL_DOC_DIR "${CMAKE_INSTALL_PREFIX}/share/doc/via-bin")
 SET(BUILD_VX off CACHE BOOL "build vxlib")
 
 SET(BUILD_APPS off CACHE BOOL "build apps")
-SET(BUILD viaio vialib)
+add_subdirectory(viaio)
+add_subdirectory(vialib)
 
 # Find some libs
 FIND_PACKAGE(X11 REQUIRED)
@@ -36,15 +37,15 @@ INCLUDE_DIRECTORIES(${GSL_INC})
 
 # choose subprojects
 if(BUILD_APPS)
-  SET(BUILD ${BUILD} base pgms)
+  add_subdirectory(base)
+  add_subdirectory(pgms)
 endif(BUILD_APPS)
 
 if(BUILD_VX)
   FIND_PACKAGE(Motif REQUIRED)
-  SET(BUILD ${BUILD} vxlib)
+  add_subdirectory( vxlib)
 endif(BUILD_VX)
 
-add_subdirectory(${BUILD})
 
 # Set default shared library version
 # This library version will be applied to all libraries in the package
