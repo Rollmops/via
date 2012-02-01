@@ -1,0 +1,3 @@
+version=3
+opts=passive \
+ftp://lipsia.cbs.mpg.de/lipsia/TGZ/[vV]+[iI]+[aA]+-(\d)\.(.*)\.tar\.gz
