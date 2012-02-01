@@ -1,25 +1,14 @@
 #!/usr/bin/make -f
 # -*- makefile -*-
-
 srcpkg = $(shell LC_ALL=C dpkg-parsechangelog | grep '^Source:' | cut -d ' ' -f 2,2)
 debver = $(shell LC_ALL=C dpkg-parsechangelog | grep '^Version:' | cut -d ' ' -f 2,2 )
 upstreamver = $(shell echo $(debver) | cut -d '-' -f 1,1 )
 
 gitver = $(shell [ -x /usr/bin/git ] && git describe --tags --match '*\.*\.*' $$(git merge-base -a HEAD master) | sed -e 's/_/./g' -e 's/-/+git/')
 
-
-# This has to be exported to make some magic below work.
-export DH_OPTIONS
-
-DEB_BUILD_PATH=build
-
-export CFLAGS = -Wall -g
-
-ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
-	export CFLAG += -O0
-else
-	export CFLAGS += -O2
-endif
+# one ring to rule them all ...
+%:
+	dh $@ --buildsystem=cmake
 
 CMAKE_FLAGS=-DCMAKE_INSTALL_PREFIX:PATH=/usr \
             -DCMAKE_SKIP_RPATH:BOOL=ON \
@@ -30,52 +19,17 @@ CMAKE_FLAGS=-DCMAKE_INSTALL_PREFIX:PATH=/usr \
             -DCMAKE_SHARED_LINKER_FLAGS="-Wl,--no-undefined" \
             -DCMAKE_EXE_LINKER_FLAGS="-Wl,--no-undefined"
 
-clean:
-	dh_testdir
-	
-	# Add here commands to clean up after the build process.
-	rm -rf $(DEB_BUILD_PATH)
-	
-	rm -f build-stamp
-	rm -f configure-stamp
-	dh_clean 
+override_dh_auto_configure:
+	dh_auto_configure -- $(CMAKE_FLAGS)
 
-configure: configure-stamp
-configure-stamp:
-	dh_testdir
-	
-	if [ ! -d $(DEB_BUILD_PATH) ]; then mkdir $(DEB_BUILD_PATH); fi
-	
-	cd $(DEB_BUILD_PATH) \
-		&& cmake $(CURDIR) $(CMAKE_FLAGS)
-	touch configure-stamp
-
-build: build-stamp
-build-stamp: configure
-	dh_testdir
-	dh_clean -k 
-	dh_installdirs
-	
-	cd $(DEB_BUILD_PATH) && $(MAKE) VERBOSE=1
-	
-	touch build-stamp
-
-
-install: build
-	dh_testdir
-	dh_testroot
-	dh_clean -k -s
-	dh_installdirs -s
-	
-	# install binaries and shared libs
-	cd $(DEB_BUILD_PATH) && $(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
-	
-	# grab all handwritten manpages
+override_dh_auto_install:
+	dh_auto_install
+	# grab all handwritten manpages, be careful to exclude matches in quilt
+	# data
 	mkdir -p $(CURDIR)/debian/tmp/man
-	for i in $$(find . -name '*.man'); do \
+	for i in $$(find . -name '*.man' | grep -v '^\./\.pc'); do \
 		cp -v $$i debian/tmp/man/$$(basename $${i%.man}.1); \
 	done
-	
 	# generate missing manpages with doxygen
 	# first update doxygen config
 	cp $(CURDIR)/userdoc/Doxyfile debian/tmp/man/Doxyfile.old
@@ -98,14 +52,12 @@ install: build
 				< $$m > debian/tmp/man/man/$${app}.1 ; \
 		fi ; \
 	done
-	
 	# only add generated manpages if no handwritten is available
 	for m in $(CURDIR)/debian/tmp/man/man/*.1; do \
 		if [ ! -f $(CURDIR)/debian/tmp/man/$$(basename $$m) ]; then \
 			cp -v $$m $(CURDIR)/debian/tmp/man/$$(basename $$m); \
 		fi; \
 	done
-	
 	# generate API docs with doxygen
 	# first update doxygen config
 	mkdir -p $(CURDIR)/debian/tmp/api
@@ -118,46 +70,10 @@ install: build
 	doxygen -u debian/tmp/api/Doxyfile
 	cd debian/tmp/api && doxygen
 
-
-# Must not depend on anything. This is to be called by
-# # binary-arch/binary-indep
-# # in another 'make' thread.
-binary-common:
-	dh_testdir
-	dh_testroot
-	
-	dh_installchangelogs
-	dh_installdocs
-	dh_installexamples
+override_dh_install:
 	dh_install --sourcedir=$(CURDIR)/debian/tmp
-	dh_installman
-	dh_link
-	dh_strip
-	dh_compress
-	dh_fixperms
-	dh_makeshlibs
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
-
-
-# Build architecture-independent files here.
-binary-indep: install
-	
-	$(MAKE) -f debian/rules DH_OPTIONS=-i binary-common
-
-
-# Build architecture-dependent files here.
-binary-arch: install
-	$(MAKE) -f debian/rules DH_OPTIONS=-a binary-common
-
-
-binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary configure
 
 get-orig-source:
 	# orig tarball, turn directory into something nicer
 	git archive --format=tar --prefix=$(srcpkg)-$(gitver)/ HEAD | \
-		gzip -9 > $(srcpkg)_$(gitver).orig.tar.gz
+	            gzip -9 > $(srcpkg)_$(gitver).orig.tar.gz

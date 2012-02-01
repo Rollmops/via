@@ -1,13 +1,14 @@
 Source: via
 Section: libs
 Priority: optional
-Maintainer: Lipsia Group (The official Lipsia developer group) <lipsia@cbs.mpg.de>
-Build-Depends: cdbs, debhelper (>= 5), lesstif2-dev, libgsl0-dev, libxaw7-dev, doxygen, cmake, libatlas-base-dev | atlas3-base-dev, libpng12-dev | libpng-dev
-Standards-Version: 3.8.2.0
+Maintainer: Lipsia Group <lipsia@cbs.mpg.de>
+Uploaders: Michael Hanke <mih@debian.org>
+Build-Depends: debhelper (>= 7.0.50~), lesstif2-dev, libgsl0-dev, libxaw7-dev,
+ doxygen, cmake, libatlas-base-dev, libpng12-dev | libpng-dev
+Standards-Version: 3.9.2
 Homepage: http://www.cbs.mpg.de/institute/software/lipsia
-Vcs-Browser: http://git.debian.org/?p=pkg-exppsy/via.git
-Vcs-Git: git://git.debian.org/git/pkg-exppsy/via.git
-XS-DM-Upload-Allowed: yes
+Vcs-Browser: http://git.debian.org/?p=debian-med/via.git
+Vcs-Git: git://git.debian.org/git/debian-med/via.git
 
 
 Package: libvia2
@@ -34,12 +35,11 @@ Description: library for volumetric image analysis
  and viaio.
 
 
-Package: via-utils
+Package: via-bin
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: libvia-doc
-Conflicts: via, via-bin
-Replaces: via-bin
+Conflicts: via
 Description: tools for volumetric image analysis
  VIA is a volumetric image analysis suite for functional and structural
  (medical) images. The suite consists of different tools ranging from
