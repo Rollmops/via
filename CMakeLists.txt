@@ -25,7 +25,7 @@ SET(BUILD_APPS off CACHE BOOL "build apps")
 # This library version will be applied to all libraries in the package
 # unless it is not explicitely for a certain lib.
 SET(VIA_VERSION_MAJOR "2")
-SET(VIA_VERSION_MINOR "0")
+SET(VIA_VERSION_MINOR "1")
 SET(VIA_VERSION_PATCH "0")
 
 
