@@ -37,8 +37,6 @@ SET(VIA_LIBRARY_PROPERTIES VERSION ${VIA_SHAREDLIB_VERSION}
                            SOVERSION ${VIA_SHAREDLIB_SOVERSION}
                            CLEAN_DIRECT_OUTPUT 1)
 
-add_subdirectory(viaio)
-add_subdirectory(vialib)
 
 # Find some libs
 FIND_PACKAGE(X11 REQUIRED)
@@ -52,6 +50,12 @@ FIND_PATH(GSL_INC "gsl/gsl_cblas.h")#ugly - cant use generic blas
 
 INCLUDE_DIRECTORIES(${GSL_INC})
 
+# define global include dir for via headers
+INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include ${X11_Xutil_INCLUDE_PATH} ${X11_Xt_INCLUDE_PATH})
+
+add_subdirectory(viaio)
+add_subdirectory(vialib)
+
 # choose subprojects
 if(BUILD_APPS)
   add_subdirectory(base)
@@ -62,11 +66,5 @@ if(BUILD_VX)
   FIND_PACKAGE(Motif REQUIRED)
   add_subdirectory(vxlib)
 endif(BUILD_VX)
-
-
-
-
-# define global include dir for via headers
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include ${X11_Xutil_INCLUDE_PATH} ${X11_Xt_INCLUDE_PATH})
 
 INSTALL(PROGRAMS via-help DESTINATION bin)
