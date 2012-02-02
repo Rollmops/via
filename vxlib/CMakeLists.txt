@@ -15,7 +15,7 @@ ADD_LIBRARY(vx_static STATIC ${VXLIB_SRC})
 #The library target "vx_static" has a default OUTPUT_NAME of "vx_static", can be changed with
 SET_TARGET_PROPERTIES(vx_static PROPERTIES ${VIA_LIBRARY_PROPERTIES} OUTPUT_NAME "vx")
 
-TARGET_LINK_LIBRARIES(vx m viaio ${MOTIF_LIBRARIES} ${X11_Xt_LIB} ${X11_LIBRARIES} ${LIB_XMU})
+TARGET_LINK_LIBRARIES(vx m viaio ${MOTIF_LIBRARIES} ${X11_Xt_LIB} ${X11_LIBRARIES} ${LIB_XMU} Xt)
 # MESSAGE(STATUS )
 
 # install library
