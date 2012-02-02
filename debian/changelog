@@ -1,28 +1,38 @@
-via (2.1.0-1) unstable; urgency=low
+via (2.1.0-1) UNRELEASED; urgency=low
 
-  * via import to git
+  * New release.
 
- -- Michael Hanke <michael.hanke@gmail.com>  Wed, 01 Jan 2012 11:00:00 +0200
+ -- Michael Hanke <mih@debian.org>  Wed, 01 Feb 2012 16:30:09 +0100
 
-via (2.0.3svn272-0) unstable; urgency=low
+via (2.0.3+svn272-0) UNRELEASED; urgency=low
 
   *fixed bug in VFIllImage
 
  -- Lipsia Group (The official Lipsia developer group) <lipsia@cbs.mpg.de>  Tue, 29 Nov 2011 12:17:00 +0400 
 
-via (2.0.2svn207-0) unstable; urgency=low
+via (2.0.2+svn207-0) UNRELEASED; urgency=low
 
   *fixed range of VLong
 
  -- Lipsia Group (The official Lipsia developer group) <lipsia@cbs.mpg.de>  Tue, 05 May 2011 12:17:00 +0400 
 
-via (2.0.1svn191-0) unstable; urgency=low
+via (2.0.2+svn206-1) UNRELEASED; urgency=low
+
+  * New upstream release. Changes in ABI, upstream skipped SO version 1 in
+    public releases and moved directly to 2. Merged missing_header patch with
+    upstream.
+  * Fix via-bin archive section (libs -> science).
+  * Package now needs libcblas.so, hence build-depends on libatlas.
+
+ -- Michael Hanke <mih@debian.org>  Thu, 05 May 2011 09:53:53 -0400
+
+via (2.0.1+svn191-0) UNRELEASED; urgency=low
 
   *renamed via-bin to via-utils
 
  -- Lipsia Group (The official Lipsia developer group) <lipsia@cbs.mpg.de>  Tue, 09 Nov 2010 12:17:00 +0400 
 
-via (2.0.0-0) unstable; urgency=low
+via (2.0.0-0) UNRELEASED; urgency=low
 
   *This version comes with the new lipsia-2.0 package
    and comprises some minor bug fixes
@@ -30,13 +40,25 @@ via (2.0.0-0) unstable; urgency=low
 
  -- Lipsia Group (The official Lipsia developer group) <lipsia@cbs.mpg.de>  Tue, 09 Nov 2010 12:17:00 +0400 
 
-via (1.6.0-2) ununstable; urgency=low
+via (1.6.0-3) unstable; urgency=low
 
-  * New internal release
+  * Adjust VCS information for the new repository home debian-med.
+  * Switch to source package format 3.0 (quilt). Move patches into separate
+    series.
+  * Adjust build-dep from atlas to libblas-dev (Closes: #554814). Thanks to
+    Riku Voipio for reporting.
 
- -- Frank Burkhardt <burk@cbs.mpg.de>  Mon, 20 Jul 2009 11:45:41 +0200
+ -- Michael Hanke <michael.hanke@gmail.com>  Tue, 06 Apr 2010 11:10:11 -0400
 
-via (1.6.0-1) ununstable; urgency=low
+via (1.6.0-2) unstable; urgency=low
+
+  * Apply patch to fix an implicit pointer conversion (Closes: #540292).
+    Thanks to Dann Frazier.
+  * Update Standards-version to 3.8.3.0 -- no changes necessary.
+
+ -- Michael Hanke <michael.hanke@gmail.com>  Mon, 24 Aug 2009 09:39:41 -0400
+
+via (1.6.0-1) unstable; urgency=low
 
   * Initial release (Closes: #521328).
   * New Upstream Version. Renamed 'vcat' to 'vcatobj' to not conflict with
