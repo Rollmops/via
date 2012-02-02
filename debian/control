@@ -1,0 +1,61 @@
+Source: via
+Section: libs
+Priority: optional
+Maintainer: Lipsia Group <lipsia@cbs.mpg.de>
+Uploaders: Michael Hanke <mih@debian.org>
+Build-Depends: debhelper (>= 7.0.50~), lesstif2-dev, libgsl0-dev, libxaw7-dev,
+ doxygen, cmake, libatlas-base-dev, libpng12-dev | libpng-dev
+Standards-Version: 3.9.2
+Homepage: http://www.cbs.mpg.de/institute/software/lipsia
+Vcs-Browser: http://git.debian.org/?p=debian-med/via.git
+Vcs-Git: git://git.debian.org/git/debian-med/via.git
+
+
+Package: libvia2
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: library for volumetric image analysis
+ VIA is a volumetric image analysis suite. The included libraries provide
+ about 70 image analysis functions.
+ .
+ This package contains the shared libraries of vialib, vxlib and viaio.
+
+
+Package: libvia-dev
+Section: libdevel
+Architecture: any
+Depends: libvia2 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Conflicts: via-dev
+Description: library for volumetric image analysis
+ VIA is a volumetric image analysis suite. The included libraries provide
+ about 70 image analysis functions.
+ .
+ This package provides the header files and static libraries of vialib, vxlib
+ and viaio.
+
+
+Package: via-bin
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: libvia-doc
+Conflicts: via, via-utils
+Replaces: via-utils
+Description: tools for volumetric image analysis
+ VIA is a volumetric image analysis suite for functional and structural
+ (medical) images. The suite consists of different tools ranging from
+ simple data handling over viewers to complex image transformation.
+ .
+ All tools operate on data in VISTA format. The package contains several
+ converters from e.g. PNG, PGM or PNM to this data format and back.
+
+
+Package: libvia-doc
+Section: doc
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: VIA library API documentation
+ VIA is a volumetric image analysis suite. The included libraries provide
+ about 70 image analysis functions.
+ .
+ This package provides the library API reference documentation.
