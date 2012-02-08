@@ -30,7 +30,7 @@ the second input comes from a separate file, and it may have...
 \fIi\fP of the output image is formed from band \fIi\fP of both input
 image; or
 .PP
-...a single band, in which case band \fIi\fP of the output image is
+\&...a single band, in which case band \fIi\fP of the output image is
 \&formed from band \fIi\fP of the first input image and band 0 of the second.
 .RE
 .PP
