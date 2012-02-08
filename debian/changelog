@@ -1,8 +1,8 @@
-via (2.1.0-1) UNRELEASED; urgency=low
+via (2.0.4-1) unstable; urgency=low
 
   * New release.
 
- -- Michael Hanke <mih@debian.org>  Wed, 01 Feb 2012 16:30:09 +0100
+ -- Michael Hanke <mih@debian.org>  Wed, 08 Feb 2012 17:38:27 +0100
 
 via (2.0.3+svn272-0) UNRELEASED; urgency=low
 
