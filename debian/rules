@@ -4,7 +4,7 @@ srcpkg = $(shell LC_ALL=C dpkg-parsechangelog | grep '^Source:' | cut -d ' ' -f 
 debver = $(shell LC_ALL=C dpkg-parsechangelog | grep '^Version:' | cut -d ' ' -f 2,2 )
 upstreamver = $(shell echo $(debver) | cut -d '-' -f 1,1 )
 
-gitver = $(shell [ -x /usr/bin/git ] && git describe --tags --match '*\.*\.*' $$(git merge-base -a HEAD master) | sed -e 's/_/./g' -e 's/-/+git/')
+gitver = $(shell [ -x /usr/bin/git ] && git describe --tags --match 'release/*' $$(git merge-base -a HEAD master) | sed -e 's,release/,,g' -e 's/_/./g' -e 's/-/+git/')
 
 # one ring to rule them all ...
 %:
@@ -75,5 +75,5 @@ override_dh_install:
 
 get-orig-source:
 	# orig tarball, turn directory into something nicer
-	git archive --format=tar --prefix=$(srcpkg)-$(gitver)/ HEAD | \
-	            gzip -9 > $(srcpkg)_$(gitver).orig.tar.gz
+	git archive --format=tar --prefix=$(srcpkg)-$(gitver)/ $$(git merge-base -a HEAD master) | \
+	            gzip -n9 > $(srcpkg)_$(gitver).orig.tar.gz
