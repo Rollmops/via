@@ -37,6 +37,7 @@ Description: library for volumetric image analysis
 
 Package: via-bin
 Architecture: any
+Section: science
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: libvia-doc
 Conflicts: via, via-utils
