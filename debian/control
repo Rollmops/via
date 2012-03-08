@@ -25,7 +25,8 @@ Description: library for volumetric image analysis
 Package: libvia-dev
 Section: libdevel
 Architecture: any
-Depends: libvia2 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Depends: libvia2 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends},
+ x11proto-core-dev
 Conflicts: via-dev
 Description: library for volumetric image analysis
  VIA is a volumetric image analysis suite. The included libraries provide
@@ -37,6 +38,7 @@ Description: library for volumetric image analysis
 
 Package: via-bin
 Architecture: any
+Section: science
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: libvia-doc
 Conflicts: via, via-utils
