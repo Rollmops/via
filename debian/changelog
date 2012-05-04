@@ -1,8 +1,8 @@
 via (2.0.4-3) unstable; urgency=low
 
-  * dummy entry for different author
+  * changed build deps
 
- -- Lipsia Group (The official Lipsia developer group) <lipsia@cbs.mpg.de>  Tue, 17 Apr 2012 13:27:00 +0400
+ -- Lipsia Group (The official Lipsia developer group) <lipsia@cbs.mpg.de>  Fri, 4 May 2012 14:27:00 +0400
  
 via (2.0.4-2) unstable; urgency=low
 
