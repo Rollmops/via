@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Lipsia Group <lipsia@cbs.mpg.de>
 Uploaders: Michael Hanke <mih@debian.org>
 Build-Depends: debhelper (>= 7.0.50~), lesstif2-dev, libgsl0-dev, libxaw7-dev,
- doxygen, cmake, libatlas-base-dev, libpng12-dev | libpng-dev
+ doxygen, cmake, libpng12-dev | libpng-dev
 Standards-Version: 3.9.2
 Homepage: http://www.cbs.mpg.de/institute/software/lipsia
 Vcs-Browser: http://git.debian.org/?p=debian-med/via.git
